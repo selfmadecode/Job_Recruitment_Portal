@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BigJobbs.Models.Applicant>
+
+<h1>All Jobs</h1>
+
+<div class="panel-body">
+    @if (!Model.Any())
+    {
+        <p>You've not applied for any job</p>
+    }
+    else
+    {
+        <table id="items" class="table table-hover">
+            <tr class="info">
+                <th>Job Name</th>
+                <th>Hiring Company</th>
+                <th>Salary</th>
+                <th>Job Type</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (var application in Model)
+            {
+                <tr class="info">
+                    @*<td>@Html.ActionLink(application.Job.Name, "EditJob", "Dashboard", new { id = application.Job.Name }, null)</td>*@
+                    <td>@application.Job.Name</td>
+                    <td>@application.Job.HiringCompany</td>
+                    <td>@application.Job.Salary</td>
+                    <td>@application.Job.JobType.Name </td>
+                    <td>
+                        @Html.ActionLink("Edit Application", "EditApplication", "Job", new { jobId = application.Job.Id },
+                         new { @class = "btn btn-info" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Job Details", "JobDetails", "Job", new { id = application.Job.Id },
+                             new { @class = "btn btn-success" })
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>

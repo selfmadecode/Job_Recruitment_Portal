@@ -1,0 +1,52 @@
+﻿@model BigJobbs.Infrastructure.ViewModels.UserAndJobViewModel
+
+@using (Html.BeginForm("SaveApplication", "Job", FormMethod.Post, new { enctype = "Multipart/Form-Data" }))
+{
+    @Html.ValidationSummary(false, "Please fix the following issues");
+    //excludepropertyErrors set to true in order to removes the list of errors and pass a default msg
+    <div class="form-group">
+        @Html.LabelFor(i => i.Job.Name)
+        <h1>@Model.Job.Name</h1>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Applicant.FirstName)
+        @Html.TextBoxFor(i => i.Applicant.FirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Applicant.LastName)
+        @Html.TextBoxFor(i => i.Applicant.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Applicant.EmailAddress)
+        @Html.TextBoxFor(i => i.Applicant.EmailAddress, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.Applicant.PhoneNumber)
+        @Html.TextBoxFor(i => i.Applicant.PhoneNumber, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(i => i.Job.Id)
+    @Html.HiddenFor(i => i.Applicant.Id)
+    @Html.HiddenFor(i => i.Job.Salary)
+    @Html.HiddenFor(i => i.Job.Description)
+    @Html.HiddenFor(i => i.Job.DatePosted)
+    @Html.HiddenFor(i => i.Job.HiringCompany)
+    @Html.HiddenFor(i => i.Job.Name)
+    @Html.HiddenFor(i => i.Job.Location)
+    @Html.HiddenFor(i => i.Job.JobCategoryId)
+    @Html.HiddenFor(i => i.Job.JobTypeId)
+    @Html.HiddenFor(i => i.Applicant.UserId)
+
+    if (Model.Applicant.Id > 0)
+    {
+        <button style="background-color: green" type="submit" class="btn btn-success">Update Application</button>
+    }
+    else
+    {
+        <button style="background-color: green" type="submit" class="btn btn-success">Submit Application</button>
+    }
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+}

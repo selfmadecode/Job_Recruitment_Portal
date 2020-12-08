@@ -1,0 +1,41 @@
+﻿<style>
+    .head-btn1, .head-btn22{
+    }
+</style>
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="header-btn f-right d-lg-block">
+            <ul>
+                <li id="name">
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "btn head-btn1" })
+                </li>
+
+                <li>
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="btn head-btn2">Log off</a>
+                </li>
+            </ul>
+        </div>
+
+        
+    }
+}
+else
+{
+    <div class="header-btn f-right d-lg-block">
+        <ul>
+            <li>
+                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn head-btn1" })
+            </li>
+            <li>
+                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn head-btn2" })
+
+            </li>
+        </ul>
+
+    </div>
+}

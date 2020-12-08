@@ -1,0 +1,18 @@
+﻿@model BigJobbs.Infrastructure.ViewModels.UserAndJobViewModel
+
+<style>
+    span{
+        background-color: darkblue;
+    }
+</style>
+
+@if(!string.IsNullOrEmpty(Model.Job.Name))
+{
+    <h1>Hello @Model.Applicant.LastName</h1>
+    <h2>Thanks for applying for <span>@Model.Job.Name</span>, your application is being worked on!</h2>
+}
+else
+{
+    <h1>We are Hiring</h1>
+
+}

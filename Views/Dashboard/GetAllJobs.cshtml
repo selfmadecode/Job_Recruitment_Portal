@@ -1,0 +1,84 @@
+﻿@model IEnumerable<BigJobbs.Models.Job>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AddJob</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/assets/css/style-starter.css">
+    <link rel="stylesheet" href="~/Content/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link href="~/Content/lib/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet" />
+</head>
+<body>
+    @Html.Partial("_SideBar")
+    @Html.Partial("_DashboardHeader")
+    <div>
+        <div class="main-content">
+            <div class="container-fluid content-top-gap">
+
+                <h1>All Job</h1>
+                <!-- statistics data -->
+                <div class="panel-body">
+                    @if (!Model.Any())
+                    {
+                        <p>No Available Jobs</p>
+                    }
+                    else
+                    {
+                        <table id="items" class="table table-hover">
+                            <tr class="info">
+                                <th>Name</th>
+                                <th>Hiring Company</th>
+                                <th>Salary</th>
+                                <th>Job Type</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            @foreach (var job in Model)
+                            {
+                                <tr class="info">
+                                    <td>@Html.ActionLink(job.Name, "EditJob", "Dashboard", new { id = job.Id }, null)</td>
+                                    <td>@job.HiringCompany</td>
+                                    <td>@job.Salary</td>
+                                    <td>@job.JobType.Name </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "EditJob", "Dashboard", new { id = job.Id },
+                                         new { @class = "btn btn-info" })
+
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", "Dashboard", new { id = job.Id },
+                                             new { @class = "btn btn-success" })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "Delete", "Dashboard", new { id = job.Id },
+                                       new { @class = "btn btn-danger" })
+                                        @*<button data-item-id="@item.Id" class="btn btn-danger delete-btn">Delete</button>*@
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Footer")
+
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jquery")
+
+    }
+
+</body>
+</html>

@@ -1,0 +1,1033 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D3B4A18B-D7AE-406E-9A62-C10B260D8799}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BigJobbs</RootNamespace>
+    <AssemblyName>BigJobbs</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44328</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.Web.Common.3.3.2\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.Web.WebApi.3.3.1\lib\net45\Ninject.Web.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicantDashboardController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\NinjectResolver.cs" />
+    <Compile Include="Infrastructure\ViewModels\UserAndJobViewModel.cs" />
+    <Compile Include="Infrastructure\ViewModels\JobViewModel.cs" />
+    <Compile Include="Interfaces\IAdminDashboardServices.cs" />
+    <Compile Include="Interfaces\IJobServices.cs" />
+    <Compile Include="Interfaces\IApplicantDashboardServices.cs" />
+    <Compile Include="Migrations\202012031641068_firstMigration.cs" />
+    <Compile Include="Migrations\202012031641068_firstMigration.Designer.cs">
+      <DependentUpon>202012031641068_firstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012041300207_AddJobToDb.cs" />
+    <Compile Include="Migrations\202012041300207_AddJobToDb.Designer.cs">
+      <DependentUpon>202012041300207_AddJobToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012041304442_PopulateJobType.cs" />
+    <Compile Include="Migrations\202012041304442_PopulateJobType.Designer.cs">
+      <DependentUpon>202012041304442_PopulateJobType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012041315275_PopulateJobCategories.cs" />
+    <Compile Include="Migrations\202012041315275_PopulateJobCategories.Designer.cs">
+      <DependentUpon>202012041315275_PopulateJobCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012041338363_SeedJob.cs" />
+    <Compile Include="Migrations\202012041338363_SeedJob.Designer.cs">
+      <DependentUpon>202012041338363_SeedJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012051823166_AddedErrorMessageToJobModel.cs" />
+    <Compile Include="Migrations\202012051823166_AddedErrorMessageToJobModel.Designer.cs">
+      <DependentUpon>202012051823166_AddedErrorMessageToJobModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012061136035_AddFirstNameAndLastNameToUserTable.cs" />
+    <Compile Include="Migrations\202012061136035_AddFirstNameAndLastNameToUserTable.Designer.cs">
+      <DependentUpon>202012061136035_AddFirstNameAndLastNameToUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012061154161_AddedApplicantModelToDb.cs" />
+    <Compile Include="Migrations\202012061154161_AddedApplicantModelToDb.Designer.cs">
+      <DependentUpon>202012061154161_AddedApplicantModelToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012061810313_AddJobApplicationStatusToApplicant.cs" />
+    <Compile Include="Migrations\202012061810313_AddJobApplicationStatusToApplicant.Designer.cs">
+      <DependentUpon>202012061810313_AddJobApplicationStatusToApplicant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012061845489_ChangedSexToStringInApplicant.cs" />
+    <Compile Include="Migrations\202012061845489_ChangedSexToStringInApplicant.Designer.cs">
+      <DependentUpon>202012061845489_ChangedSexToStringInApplicant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012061903214_RemovedSexFromApplicant.cs" />
+    <Compile Include="Migrations\202012061903214_RemovedSexFromApplicant.Designer.cs">
+      <DependentUpon>202012061903214_RemovedSexFromApplicant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Applicant.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobCategory.cs" />
+    <Compile Include="Models\JobType.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdminDashboardServices.cs" />
+    <Compile Include="Services\JobServices.cs" />
+    <Compile Include="Services\Context.cs" />
+    <Compile Include="Services\ApplicantDashboardServices.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\assets\css\animate.min.css" />
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\flaticon.css" />
+    <Content Include="Content\assets\css\fontawesome-all.css" />
+    <Content Include="Content\assets\css\fontawesome-all.min.css" />
+    <Content Include="Content\assets\css\magnific-popup.css" />
+    <Content Include="Content\assets\css\nice-select.css" />
+    <Content Include="Content\assets\css\owl.carousel.min.css" />
+    <Content Include="Content\assets\css\price_rangs.css" />
+    <Content Include="Content\assets\css\responsive.css" />
+    <Content Include="Content\assets\css\slick.css" />
+    <Content Include="Content\assets\css\slicknav.css" />
+    <Content Include="Content\assets\css\style-starter.css" />
+    <Content Include="Content\assets\css\style.css" />
+    <Content Include="Content\assets\css\themify-icons.css" />
+    <Content Include="Content\assets\fonts\fa-brands-400.svg" />
+    <Content Include="Content\assets\fonts\fa-regular-400.svg" />
+    <Content Include="Content\assets\fonts\fa-solid-900.svg" />
+    <Content Include="Content\assets\fonts\flaticon.html" />
+    <Content Include="Content\assets\fonts\Flaticon.svg" />
+    <Content Include="Content\assets\fonts\themify.svg" />
+    <Content Include="Content\assets\img\about\about_lft.png" />
+    <Content Include="Content\assets\img\about\about_right.png" />
+    <Content Include="Content\assets\img\about\pet_care.png" />
+    <Content Include="Content\assets\img\adapt_icon\1.png" />
+    <Content Include="Content\assets\img\adapt_icon\1.svg" />
+    <Content Include="Content\assets\img\adapt_icon\2.png" />
+    <Content Include="Content\assets\img\adapt_icon\3.png" />
+    <Content Include="Content\assets\img\banner\dog.png" />
+    <Content Include="Content\assets\img\banner\img.png" />
+    <Content Include="Content\assets\img\blog\author.png" />
+    <Content Include="Content\assets\img\blog\blog_4.png" />
+    <Content Include="Content\assets\img\blog\home-blog1.jpg" />
+    <Content Include="Content\assets\img\blog\home-blog2.jpg" />
+    <Content Include="Content\assets\img\blog\learn_about_bg.png" />
+    <Content Include="Content\assets\img\blog\single_blog_1.png" />
+    <Content Include="Content\assets\img\blog\single_blog_2.png" />
+    <Content Include="Content\assets\img\blog\single_blog_3.png" />
+    <Content Include="Content\assets\img\blog\single_blog_4.png" />
+    <Content Include="Content\assets\img\blog\single_blog_5.png" />
+    <Content Include="Content\assets\img\blog\slide_thumb_1.png" />
+    <Content Include="Content\assets\img\comment\comment_1.png" />
+    <Content Include="Content\assets\img\comment\comment_2.png" />
+    <Content Include="Content\assets\img\comment\comment_3.png" />
+    <Content Include="Content\assets\img\elements\a.jpg" />
+    <Content Include="Content\assets\img\elements\a2.jpg" />
+    <Content Include="Content\assets\img\elements\d.jpg" />
+    <Content Include="Content\assets\img\elements\disabled-check.png" />
+    <Content Include="Content\assets\img\elements\disabled-radio.png" />
+    <Content Include="Content\assets\img\elements\f1.jpg" />
+    <Content Include="Content\assets\img\elements\f2.jpg" />
+    <Content Include="Content\assets\img\elements\f3.jpg" />
+    <Content Include="Content\assets\img\elements\f4.jpg" />
+    <Content Include="Content\assets\img\elements\f5.jpg" />
+    <Content Include="Content\assets\img\elements\f6.jpg" />
+    <Content Include="Content\assets\img\elements\f7.jpg" />
+    <Content Include="Content\assets\img\elements\f8.jpg" />
+    <Content Include="Content\assets\img\elements\g1.jpg" />
+    <Content Include="Content\assets\img\elements\g2.jpg" />
+    <Content Include="Content\assets\img\elements\g3.jpg" />
+    <Content Include="Content\assets\img\elements\g4.jpg" />
+    <Content Include="Content\assets\img\elements\g5.jpg" />
+    <Content Include="Content\assets\img\elements\g6.jpg" />
+    <Content Include="Content\assets\img\elements\g7.jpg" />
+    <Content Include="Content\assets\img\elements\g8.jpg" />
+    <Content Include="Content\assets\img\elements\primary-check.png" />
+    <Content Include="Content\assets\img\elements\primary-radio.png" />
+    <Content Include="Content\assets\img\elements\success-check.png" />
+    <Content Include="Content\assets\img\elements\success-radio.png" />
+    <Content Include="Content\assets\img\favicon.ico" />
+    <Content Include="Content\assets\img\gallery\1.png" />
+    <Content Include="Content\assets\img\gallery\2.png" />
+    <Content Include="Content\assets\img\gallery\3.png" />
+    <Content Include="Content\assets\img\gallery\cv_bg.jpg" />
+    <Content Include="Content\assets\img\gallery\how-applybg.png" />
+    <Content Include="Content\assets\img\hero\about.jpg" />
+    <Content Include="Content\assets\img\hero\h1_hero.jpg" />
+    <Content Include="Content\assets\img\icon\form.png" />
+    <Content Include="Content\assets\img\icon\job-list1.png" />
+    <Content Include="Content\assets\img\icon\job-list2.png" />
+    <Content Include="Content\assets\img\icon\job-list3.png" />
+    <Content Include="Content\assets\img\icon\job-list4.png" />
+    <Content Include="Content\assets\img\logo\form-iocn.jpg" />
+    <Content Include="Content\assets\img\logo\loder.jpg" />
+    <Content Include="Content\assets\img\logo\logo.png" />
+    <Content Include="Content\assets\img\logo\logo2_footer.png" />
+    <Content Include="Content\assets\img\logo\select-items-icon.jpg" />
+    <Content Include="Content\assets\img\logo\testimonial.png" />
+    <Content Include="Content\assets\img\offers\1.png" />
+    <Content Include="Content\assets\img\offers\2.png" />
+    <Content Include="Content\assets\img\offers\3.png" />
+    <Content Include="Content\assets\img\our_blog\blog-img1.jpg" />
+    <Content Include="Content\assets\img\post\next.png" />
+    <Content Include="Content\assets\img\post\post_1.png" />
+    <Content Include="Content\assets\img\post\post_10.png" />
+    <Content Include="Content\assets\img\post\post_2.png" />
+    <Content Include="Content\assets\img\post\post_3.png" />
+    <Content Include="Content\assets\img\post\post_4.png" />
+    <Content Include="Content\assets\img\post\post_5.png" />
+    <Content Include="Content\assets\img\post\post_6.png" />
+    <Content Include="Content\assets\img\post\post_7.png" />
+    <Content Include="Content\assets\img\post\post_8.png" />
+    <Content Include="Content\assets\img\post\post_9.png" />
+    <Content Include="Content\assets\img\post\preview.png" />
+    <Content Include="Content\assets\img\prising\1.png" />
+    <Content Include="Content\assets\img\prising\10.png" />
+    <Content Include="Content\assets\img\prising\2.png" />
+    <Content Include="Content\assets\img\prising\3.png" />
+    <Content Include="Content\assets\img\prising\4.png" />
+    <Content Include="Content\assets\img\prising\5.png" />
+    <Content Include="Content\assets\img\prising\6.png" />
+    <Content Include="Content\assets\img\prising\7.png" />
+    <Content Include="Content\assets\img\prising\8.png" />
+    <Content Include="Content\assets\img\prising\9.png" />
+    <Content Include="Content\assets\img\service\1.png" />
+    <Content Include="Content\assets\img\service\2.png" />
+    <Content Include="Content\assets\img\service\3.png" />
+    <Content Include="Content\assets\img\service\footer_bg.jpg" />
+    <Content Include="Content\assets\img\service\service_icon_1.png" />
+    <Content Include="Content\assets\img\service\service_icon_2.png" />
+    <Content Include="Content\assets\img\service\service_icon_3.png" />
+    <Content Include="Content\assets\img\service\service_icon_bg_1.png" />
+    <Content Include="Content\assets\img\service\support-img.jpg" />
+    <Content Include="Content\assets\img\team\1.png" />
+    <Content Include="Content\assets\img\team\2.png" />
+    <Content Include="Content\assets\img\team\3.png" />
+    <Content Include="Content\assets\img\testmonial\1.png" />
+    <Content Include="Content\assets\img\testmonial\testimonial-founder.png" />
+    <Content Include="Content\assets\js\animated.headline.js" />
+    <Content Include="Content\assets\js\bar.js" />
+    <Content Include="Content\assets\js\bootstrap.min.js" />
+    <Content Include="Content\assets\js\Chart.min.js" />
+    <Content Include="Content\assets\js\contact.js" />
+    <Content Include="Content\assets\js\jquery-1.10.2.min.js" />
+    <Content Include="Content\assets\js\jquery-3.3.1.min.js" />
+    <Content Include="Content\assets\js\jquery.ajaxchimp.min.js" />
+    <Content Include="Content\assets\js\jquery.form.js" />
+    <Content Include="Content\assets\js\jquery.magnific-popup.js" />
+    <Content Include="Content\assets\js\jquery.nice-select.min.js" />
+    <Content Include="Content\assets\js\jquery.nicescroll.js" />
+    <Content Include="Content\assets\js\jquery.paroller.min.js" />
+    <Content Include="Content\assets\js\jquery.scrollUp.min.js" />
+    <Content Include="Content\assets\js\jquery.slicknav.min.js" />
+    <Content Include="Content\assets\js\jquery.sticky.js" />
+    <Content Include="Content\assets\js\jquery.validate.min.js" />
+    <Content Include="Content\assets\js\linechart.js" />
+    <Content Include="Content\assets\js\mail-script.js" />
+    <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\js\modernizr.js" />
+    <Content Include="Content\assets\js\one-page-nav-min.js" />
+    <Content Include="Content\assets\js\owl.carousel.min.js" />
+    <Content Include="Content\assets\js\plugins.js" />
+    <Content Include="Content\assets\js\popper.min.js" />
+    <Content Include="Content\assets\js\price_rangs.js" />
+    <Content Include="Content\assets\js\scripts.js" />
+    <Content Include="Content\assets\js\slick.min.js" />
+    <Content Include="Content\assets\js\utils.js" />
+    <Content Include="Content\assets\js\vendor\jquery-1.12.4.min.js" />
+    <Content Include="Content\assets\js\vendor\modernizr-3.5.0.min.js" />
+    <Content Include="Content\assets\js\wow.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\.gitattributes" />
+    <Content Include="Content\lib\Trumbowyg-master\.gitignore" />
+    <Content Include="Content\lib\Trumbowyg-master\banner.jpg" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ar.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ar.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\bg.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\bg.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\by.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\by.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ca.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ca.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\cs.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\cs.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\da.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\da.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\de.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\de.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\el.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\el.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\es.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\es.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\es_ar.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\es_ar.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\fa.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\fa.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\fi.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\fi.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\fr.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\fr.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\he.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\he.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\hr.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\hr.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\hu.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\hu.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\id.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\id.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\it.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\it.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ja.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ja.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ko.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ko.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\lt.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\lt.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\mn.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\mn.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\my.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\my.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\nl.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\nl.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\no_nb.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\no_nb.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ph.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ph.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\pl.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\pl.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\pt.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\pt.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\pt_br.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\pt_br.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ro.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ro.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\rs.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\rs.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\rs_latin.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\rs_latin.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ru.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ru.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\sk.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\sk.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\sl.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\sl.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\sq.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\sq.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\sv.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\sv.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\th.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\th.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\tr.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\tr.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ua.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\ua.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\vi.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\vi.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\zh_cn.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\zh_cn.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\zh_tw.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\langs\zh_tw.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\allowtagsfrompaste\trumbowyg.allowtagsfrompaste.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\allowtagsfrompaste\trumbowyg.allowtagsfrompaste.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\base64\trumbowyg.base64.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\base64\trumbowyg.base64.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\cleanpaste\trumbowyg.cleanpaste.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\cleanpaste\trumbowyg.cleanpaste.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\colors\trumbowyg.colors.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\colors\trumbowyg.colors.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\colors\ui\trumbowyg.colors.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\colors\ui\trumbowyg.colors.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\emoji\trumbowyg.emoji.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\emoji\trumbowyg.emoji.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\emoji\ui\trumbowyg.emoji.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\emoji\ui\trumbowyg.emoji.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\fontfamily\trumbowyg.fontfamily.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\fontfamily\trumbowyg.fontfamily.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\fontsize\trumbowyg.fontsize.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\fontsize\trumbowyg.fontsize.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\giphy\trumbowyg.giphy.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\giphy\trumbowyg.giphy.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\giphy\ui\trumbowyg.giphy.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\giphy\ui\trumbowyg.giphy.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\highlight\trumbowyg.highlight.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\highlight\trumbowyg.highlight.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\highlight\ui\trumbowyg.highlight.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\highlight\ui\trumbowyg.highlight.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\history\trumbowyg.history.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\history\trumbowyg.history.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\insertaudio\trumbowyg.insertaudio.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\insertaudio\trumbowyg.insertaudio.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\lineheight\trumbowyg.lineheight.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\lineheight\trumbowyg.lineheight.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mathml\trumbowyg.mathml.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mathml\trumbowyg.mathml.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mathml\ui\trumbowyg.mathml.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mathml\ui\trumbowyg.mathml.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mention\trumbowyg.mention.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mention\trumbowyg.mention.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mention\ui\trumbowyg.mention.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mention\ui\trumbowyg.mention.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\noembed\trumbowyg.noembed.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\noembed\trumbowyg.noembed.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\pasteembed\trumbowyg.pasteembed.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\pasteembed\trumbowyg.pasteembed.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\pasteimage\trumbowyg.pasteimage.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\pasteimage\trumbowyg.pasteimage.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\preformatted\trumbowyg.preformatted.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\preformatted\trumbowyg.preformatted.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\resizimg\resizable-resolveconflict.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\resizimg\resizable-resolveconflict.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\resizimg\trumbowyg.resizimg.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\resizimg\trumbowyg.resizimg.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\ruby\trumbowyg.ruby.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\ruby\trumbowyg.ruby.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\specialchars\trumbowyg.specialchars.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\specialchars\trumbowyg.specialchars.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\specialchars\ui\trumbowyg.specialchars.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\specialchars\ui\trumbowyg.specialchars.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\table\trumbowyg.table.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\table\trumbowyg.table.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\table\ui\trumbowyg.table.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\table\ui\trumbowyg.table.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\template\trumbowyg.template.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\template\trumbowyg.template.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\upload\trumbowyg.upload.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\upload\trumbowyg.upload.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\trumbowyg.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\trumbowyg.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\ui\icons.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\ui\trumbowyg.css" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\ui\trumbowyg.min.css" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\.gitignore" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\css\main.css" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\core\dark-theme.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\core\default.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\core\simple.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\index.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\js\highlight.js" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\js\loader.js" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\js\runExampleCode.js" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\allowtagsfrompaste.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\base64.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\cleanpaste.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\colors.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\emoji.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\fontfamily.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\fontsize.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\giphy.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\highlight.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\history.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\insertaudio.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\lineheight.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\mathml.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\mention.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\noembed.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\pasteembed.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\pasteimage.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\preformatted.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\resizimg.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\ruby.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\specialchars.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\table.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\template.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\demos\plugins\upload.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\documentation.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\documentation\core\index.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\documentation\index.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\documentation\plugins\index.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\favicon.png" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\gulpfile.js" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\humans.txt" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\img\beer.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\img\globe.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\img\introduction-customizable.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\img\introduction-html.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\img\introduction-lightweight.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\img\logo-doc.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\img\logo.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\index.html" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\js\main.js" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\js\vendor\highlight.js" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\js\vendor\jquery-3.3.1.min.js" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\robots.txt" />
+    <Content Include="Content\lib\Trumbowyg-master\gulpfile.js" />
+    <Content Include="Content\lib\Trumbowyg-master\index.html" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\allowtagsfrompaste\trumbowyg.allowtagsfrompaste.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\base64\trumbowyg.base64.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\base64\ui\icons\base64.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\cleanpaste\trumbowyg.cleanpaste.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\colors\trumbowyg.colors.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\colors\ui\icons\back-color.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\colors\ui\icons\fore-color.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\emoji\trumbowyg.emoji.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\emoji\ui\icons\emoji.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\fontfamily\trumbowyg.fontfamily.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\fontsize\trumbowyg.fontsize.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\fontsize\ui\icons\fontsize.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\giphy\trumbowyg.giphy.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\giphy\ui\icons\giphy.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\highlight\trumbowyg.highlight.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\highlight\ui\icons\highlight.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\history\trumbowyg.history.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\insertaudio\trumbowyg.insertaudio.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\insertaudio\ui\icons\insert-audio.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\lineheight\trumbowyg.lineheight.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\lineheight\ui\icons\lineheight.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\mathml\trumbowyg.mathml.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\mathml\ui\icons\mathml.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\mention\trumbowyg.mention.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\mention\ui\icons\mention.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\noembed\trumbowyg.noembed.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\noembed\ui\icons\noembed.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\pasteembed\trumbowyg.pasteembed.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\pasteimage\trumbowyg.pasteimage.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\preformatted\trumbowyg.preformatted.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\preformatted\ui\icons\preformatted.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\resizimg\resizable-resolveconflict.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\resizimg\trumbowyg.resizimg.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\ruby\trumbowyg.ruby.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\ruby\ui\icons\ruby.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\specialchars\trumbowyg.specialchars.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\specialchars\ui\icons\special-chars.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\trumbowyg.table.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\icons\col-delete.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\icons\col-left.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\icons\col-right.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\icons\row-above.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\icons\row-below.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\icons\row-delete.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\icons\table-delete.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\icons\table.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\template\trumbowyg.template.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\upload\trumbowyg.upload.js" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\upload\ui\icons\upload.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\sponsors\avot.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\sponsors\socialoptic.png" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\ar.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\bg.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\by.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\ca.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\cs.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\da.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\de.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\el.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\en.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\es.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\es_ar.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\fa.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\fi.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\fr.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\he.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\hr.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\hu.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\id.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\it.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\ja.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\ko.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\lt.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\mn.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\my.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\nl.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\no_nb.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\ph.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\pl.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\pt.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\pt_br.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\ro.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\rs.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\rs_latin.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\ru.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\sk.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\sl.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\sq.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\sv.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\th.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\tr.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\ua.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\vi.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\zh_cn.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\langs\zh_tw.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\trumbowyg.js" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\blockquote.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\bold.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\close.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\create-link.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\del.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\em.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\fullscreen.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\h1.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\h2.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\h3.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\h4.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\h5.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\h6.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\horizontal-rule.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\insert-image.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\italic.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\justify-center.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\justify-full.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\justify-left.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\justify-right.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\link.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\ordered-list.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\p.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\redo.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\removeformat.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\strikethrough.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\strong.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\subscript.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\superscript.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\underline.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\undo.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\unlink.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\unordered-list.svg" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\icons\view-html.svg" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\assets\fonts\fa-brands-400.eot" />
+    <Content Include="Content\assets\fonts\fa-brands-400.ttf" />
+    <Content Include="Content\assets\fonts\fa-brands-400.woff" />
+    <Content Include="Content\assets\fonts\fa-brands-400.woff2" />
+    <Content Include="Content\assets\fonts\fa-regular-400.eot" />
+    <Content Include="Content\assets\fonts\fa-regular-400.ttf" />
+    <Content Include="Content\assets\fonts\fa-regular-400.woff" />
+    <Content Include="Content\assets\fonts\fa-regular-400.woff2" />
+    <Content Include="Content\assets\fonts\fa-solid-900.eot" />
+    <Content Include="Content\assets\fonts\fa-solid-900.ttf" />
+    <Content Include="Content\assets\fonts\fa-solid-900.woff" />
+    <Content Include="Content\assets\fonts\fa-solid-900.woff2" />
+    <Content Include="Content\assets\fonts\Flaticon.eot" />
+    <Content Include="Content\assets\fonts\Flaticon.ttf" />
+    <Content Include="Content\assets\fonts\Flaticon.woff" />
+    <Content Include="Content\assets\fonts\Flaticon.woff2" />
+    <Content Include="Content\assets\fonts\themify.eot" />
+    <Content Include="Content\assets\fonts\themify.ttf" />
+    <Content Include="Content\assets\fonts\themify.woff" />
+    <Content Include="Content\assets\fonts\_flaticon.scss" />
+    <Content Include="Content\assets\scss\style.scss" />
+    <Content Include="Content\assets\scss\_apply-proces.scss" />
+    <Content Include="Content\assets\scss\_blog.scss" />
+    <Content Include="Content\assets\scss\_blog_page.scss" />
+    <Content Include="Content\assets\scss\_bradcam.scss" />
+    <Content Include="Content\assets\scss\_color.scss" />
+    <Content Include="Content\assets\scss\_common.scss" />
+    <Content Include="Content\assets\scss\_contact.scss" />
+    <Content Include="Content\assets\scss\_cv-online.scss" />
+    <Content Include="Content\assets\scss\_elements.scss" />
+    <Content Include="Content\assets\scss\_extend.scss" />
+    <Content Include="Content\assets\scss\_featured-Jobs.scss" />
+    <Content Include="Content\assets\scss\_footer.scss" />
+    <Content Include="Content\assets\scss\_h1-hero.scss" />
+    <Content Include="Content\assets\scss\_headerMenu.scss" />
+    <Content Include="Content\assets\scss\_job_details.scss" />
+    <Content Include="Content\assets\scss\_job_listing.scss" />
+    <Content Include="Content\assets\scss\_mixins.scss" />
+    <Content Include="Content\assets\scss\_overlay.scss" />
+    <Content Include="Content\assets\scss\_pagination.scss" />
+    <Content Include="Content\assets\scss\_recent.scss" />
+    <Content Include="Content\assets\scss\_services.scss" />
+    <Content Include="Content\assets\scss\_services_section.scss" />
+    <Content Include="Content\assets\scss\_support-company.scss" />
+    <Content Include="Content\assets\scss\_team.scss" />
+    <Content Include="Content\assets\scss\_testimonial.scss" />
+    <Content Include="Content\assets\scss\_variables.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\.bowerrc" />
+    <Content Include="Content\lib\Trumbowyg-master\.github\FUNDING.yml" />
+    <Content Include="Content\lib\Trumbowyg-master\.github\ISSUE_TEMPLATE.md" />
+    <Content Include="Content\lib\Trumbowyg-master\.jshintrc" />
+    <Content Include="Content\lib\Trumbowyg-master\.npmignore" />
+    <Content Include="Content\lib\Trumbowyg-master\BACKERS.md" />
+    <Content Include="Content\lib\Trumbowyg-master\bower.json" />
+    <Content Include="Content\lib\Trumbowyg-master\CONTRIBUTORS.md" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\colors\ui\sass\trumbowyg.colors.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\emoji\ui\sass\trumbowyg.emoji.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\giphy\ui\sass\trumbowyg.giphy.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\highlight\ui\sass\trumbowyg.highlight.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mathml\ui\sass\trumbowyg.mathml.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\mention\ui\sass\trumbowyg.mention.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\specialchars\ui\sass\trumbowyg.specialchars.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\plugins\table\ui\sass\trumbowyg.table.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\dist\ui\sass\trumbowyg.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\.jshintrc" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\font\panton.eot" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\font\panton.ttf" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\font\panton.woff" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\font\panton.woff2" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\package.json" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\main.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_base.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_buttons.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_documentation.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_donate.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_font.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_footer.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_get-started.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_header.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_highlightjs-github.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_introduction.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_languages.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_normalize.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_plugins-packages.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\scss\_section.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\docs\yarn.lock" />
+    <Content Include="Content\lib\Trumbowyg-master\LICENSE" />
+    <Content Include="Content\lib\Trumbowyg-master\package.json" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\colors\ui\sass\trumbowyg.colors.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\emoji\ui\sass\trumbowyg.emoji.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\giphy\ui\sass\trumbowyg.giphy.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\highlight\ui\sass\trumbowyg.highlight.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\mathml\ui\sass\trumbowyg.mathml.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\mention\ui\sass\trumbowyg.mention.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\specialchars\ui\sass\trumbowyg.specialchars.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\plugins\table\ui\sass\trumbowyg.table.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\README.md" />
+    <Content Include="Content\lib\Trumbowyg-master\src\ui\sass\trumbowyg.scss" />
+    <Content Include="Content\lib\Trumbowyg-master\yarn.lock" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Job\JobDetails.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Shared\_SideBar.cshtml" />
+    <Content Include="Views\Shared\_DashboardHeader.cshtml" />
+    <Content Include="Views\Dashboard\JobForm.cshtml" />
+    <Content Include="Views\Dashboard\_Footer.cshtml" />
+    <Content Include="Views\Dashboard\GetAllJobs.cshtml" />
+    <Content Include="Views\Job\ApplyForJob.cshtml" />
+    <Content Include="Views\Job\ApplicationStatus.cshtml" />
+    <Content Include="Views\ApplicantDashboard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202012031641068_firstMigration.resx">
+      <DependentUpon>202012031641068_firstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012041300207_AddJobToDb.resx">
+      <DependentUpon>202012041300207_AddJobToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012041304442_PopulateJobType.resx">
+      <DependentUpon>202012041304442_PopulateJobType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012041315275_PopulateJobCategories.resx">
+      <DependentUpon>202012041315275_PopulateJobCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012041338363_SeedJob.resx">
+      <DependentUpon>202012041338363_SeedJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012051823166_AddedErrorMessageToJobModel.resx">
+      <DependentUpon>202012051823166_AddedErrorMessageToJobModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012061136035_AddFirstNameAndLastNameToUserTable.resx">
+      <DependentUpon>202012061136035_AddFirstNameAndLastNameToUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012061154161_AddedApplicantModelToDb.resx">
+      <DependentUpon>202012061154161_AddedApplicantModelToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012061810313_AddJobApplicationStatusToApplicant.resx">
+      <DependentUpon>202012061810313_AddJobApplicationStatusToApplicant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012061845489_ChangedSexToStringInApplicant.resx">
+      <DependentUpon>202012061845489_ChangedSexToStringInApplicant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012061903214_RemovedSexFromApplicant.resx">
+      <DependentUpon>202012061903214_RemovedSexFromApplicant.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53521</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44328/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
