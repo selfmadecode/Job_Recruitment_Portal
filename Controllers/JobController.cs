@@ -65,7 +65,7 @@ namespace BigJobbs.Controllers
             var jobDetails = JobService.EditApplication(jobId, currentUserId);
 
             if (jobDetails == null)
-                return HttpNotFound("No Available job matching the Id");
+                return HttpNotFound("No Available job matching this Id");
 
             return View("ApplyForJob", jobDetails);
         }
