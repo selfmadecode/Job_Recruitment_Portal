@@ -28,7 +28,37 @@ namespace BigJobbs.Services
 
         public Job GetJobDetails(int id)
         {
-            return Ctx._dbContext.Jobs.Include(c => c.JobCategory).Include(t => t.JobType).FirstOrDefault(j => j.Id == id);
+            var jobInDb = Ctx._dbContext.Jobs.Include(c => c.JobCategory).Include(t => t.JobType).FirstOrDefault(j => j.Id == id);
+            
+            if (jobInDb == null)
+                return null;
+            else
+                return jobInDb;
+        }
+        public UserAndJobViewModel GetOnlyJobDetails(int id)
+        {
+            var onlyJobDetails = GetJobDetails(id);
+
+
+            var onlyJob = new UserAndJobViewModel
+            {
+                Job = onlyJobDetails,
+                Applicant = new Applicant()
+            };
+            return onlyJob;
+        }
+        public UserAndJobViewModel GetJobAndApplicantDetails(int id, string userId)
+        {
+            var applicant = Ctx._dbContext.Applicants.FirstOrDefault(j => j.Job.Id == id && j.UserId == userId);
+            
+            var job = GetJobDetails(id);
+
+            var application = new UserAndJobViewModel
+            {
+                Applicant = applicant,
+                Job = job
+            };
+            return application;
         }
 
         public UserAndJobViewModel ApplyForJob(int jobId, string currentUserId)
@@ -40,6 +70,7 @@ namespace BigJobbs.Services
             if (jobInDb == null)
                 return null;
 
+            // fills the job form with the following properties from the user table for the user
             var applicant = new Applicant
             {
                 FirstName = user.FirstName,
@@ -63,6 +94,7 @@ namespace BigJobbs.Services
 
         public void SaveApplicantion(UserAndJobViewModel userAndJobViewModel)
         {
+            // Save User Application
             var appplicant = new Applicant
             {
                 FirstName = userAndJobViewModel.Applicant.FirstName,
@@ -79,23 +111,25 @@ namespace BigJobbs.Services
         public UserAndJobViewModel EditApplication(int jobId, string currentUserId)
         {
             var jobInDb = GetJobDetails(jobId);
-            var applicant = GetApplicantApplication(currentUserId, jobId);
+
+            //GET the applicant application where applicant (jobId, UserId) Value is (jobId, currentUserId)
+            var applicantApplication = GetApplicantApplication(currentUserId, jobId);
 
             if (jobInDb == null)
                 return null;
 
             var jobApplicant = new Applicant
             {
-                FirstName = applicant.FirstName,
-                LastName = applicant.LastName,
-                EmailAddress = applicant.EmailAddress,
-                UserId = applicant.UserId,
-                PhoneNumber = applicant.PhoneNumber,
-                Id =applicant.Id,
-                JobApplicationStatus = applicant.JobApplicationStatus,
-                Job = applicant.Job,
-                JobId = applicant.JobId,
-                User = applicant.User
+                FirstName = applicantApplication.FirstName,
+                LastName = applicantApplication.LastName,
+                EmailAddress = applicantApplication.EmailAddress,
+                UserId = applicantApplication.UserId,
+                PhoneNumber = applicantApplication.PhoneNumber,
+                Id = applicantApplication.Id,
+                JobApplicationStatus = applicantApplication.JobApplicationStatus,
+                Job = applicantApplication.Job,
+                JobId = applicantApplication.JobId,
+                User = applicantApplication.User
                 
             };
 
@@ -111,6 +145,7 @@ namespace BigJobbs.Services
 
         public void UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId)
         {
+            // Get applicant application from DB and update the details
             var applicationToUpdate = GetApplicantApplication(currentUserId, userAndJobViewModel.Job.Id);
 
             applicationToUpdate.FirstName = userAndJobViewModel.Applicant.FirstName;

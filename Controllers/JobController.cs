@@ -24,8 +24,26 @@ namespace BigJobbs.Controllers
         // [Authorize]
         public ActionResult JobDetails(int id)
         {
-            var jobDetails = JobService.GetJobDetails(id);
-            return View(jobDetails);
+            var currentUserId = User.Identity.GetUserId();
+
+            if (string.IsNullOrEmpty(currentUserId))
+            {
+                var jobDetails = JobService.GetOnlyJobDetails(id);
+
+                if (jobDetails.Job == null)
+                    return HttpNotFound("No Available job matching the Id");
+
+                return View(jobDetails);
+            }
+            else
+            {
+                var jobAndApplicantDetails = JobService.GetJobAndApplicantDetails(id, currentUserId);
+
+                if (jobAndApplicantDetails.Job == null)
+                    return HttpNotFound("No Available job matching the Id");
+
+                return View(jobAndApplicantDetails);
+            }
         }
         [Authorize]
         public ActionResult ApplyForJob(int jobId)
@@ -45,6 +63,10 @@ namespace BigJobbs.Controllers
             var currentUserId = User.Identity.GetUserId();
 
             var jobDetails = JobService.EditApplication(jobId, currentUserId);
+
+            if (jobDetails == null)
+                return HttpNotFound("No Available job matching the Id");
+
             return View("ApplyForJob", jobDetails);
         }
         [HttpPost]

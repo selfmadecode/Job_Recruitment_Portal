@@ -1,4 +1,5 @@
-﻿@model BigJobbs.Models.Job
+﻿@*@model BigJobbs.Models.Job*@
+@model BigJobbs.Infrastructure.ViewModels.UserAndJobViewModel
 
 @using Microsoft.AspNet.Identity
 @{
@@ -23,7 +24,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>@Model.Name</h2>
+                        <h2>@Model.Job.Name</h2>
                     </div>
                 </div>
             </div>
@@ -45,12 +46,12 @@
                         </div>
                         <div class="job-tittle">
                             <a href="#">
-                                <h4>@Model.Name</h4>
+                                <h4>@Model.Job.Name</h4>
                             </a>
                             <ul>
-                                <li>@Model.HiringCompany</li>
-                                <li><i class="fas fa-map-marker-alt"></i>@Model.Location</li>
-                                <li>$@Model.Salary</li>
+                                <li>@Model.Job.HiringCompany</li>
+                                <li><i class="fas fa-map-marker-alt"></i>@Model.Job.Location</li>
+                                <li>$@Model.Job.Salary</li>
                             </ul>
                         </div>
                     </div>
@@ -63,7 +64,7 @@
                         <div class="small-section-tittle">
                             <h4>Job Description</h4>
                         </div>
-                        <p>@Html.Raw(Model.Description)</p>
+                        <p>@Html.Raw(Model.Job.Description)</p>
                     </div>
                 </div>
 
@@ -76,14 +77,24 @@
                         <h4>Job Overview</h4>
                     </div>
                     <ul>
-                        <li>Posted date : <span>@string.Format("{0:d MMM, yyyy}", Model.DatePosted) </span></li>
-                        <li>Location : <span>@Model.Location</span></li>
-                        <li>Job nature : <span>@Model.JobType.Name</span></li>
-                        <li>Salary :  <span>$@Model.Salary, yearly</span></li>
+                        <li>Posted date : <span>@string.Format("{0:d MMM, yyyy}", Model.Job.DatePosted) </span></li>
+                        <li>Location : <span>@Model.Job.Location</span></li>
+                        <li>Job nature : <span>@Model.Job.JobType.Name</span></li>
+                        <li>Salary :  <span>$@Model.Job.Salary, yearly</span></li>
                     </ul>
                     <div class="apply-btn2">
+                        @{
+                            if (Model.Applicant.Id > 0 && Model.Applicant.Job.Id == Model.Job.Id)
+                            {
+                                <button class="btn">You've already applied for this Job</button>
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Apply Now", "ApplyForJob", "Job", new { jobId = Model.Job.Id }, new { @class = "btn" })
 
-                        @Html.ActionLink("Apply Now", "ApplyForJob", "Job", new { jobId = Model.Id }, new { @class = "btn" })
+                            }
+                        }
+
                         @*<a href="#" class="btn">Apply Nowii</a>*@
                     </div>
                 </div>
@@ -92,14 +103,14 @@
                     <div class="small-section-tittle">
                         <h4>Company Information</h4>
                     </div>
-                    <span>@Model.HiringCompany</span>
+                    <span>@Model.Job.HiringCompany</span>
                     <ul>
                         <li>Web : <span> colorlib.com</span></li>
                         <li>Email: <span>carrier.colorlib@gmail.com</span></li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!-- job post company End -->
+            </div>
+                    </div>
+                </div>
+            <!-- job post company End -->

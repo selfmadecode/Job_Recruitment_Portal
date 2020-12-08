@@ -15,6 +15,8 @@ namespace BigJobbs.Interfaces
         IEnumerable<JobType> GetAllJobTypes();
 
         Job GetJobDetails(int id);
+        UserAndJobViewModel GetJobAndApplicantDetails(int id, string userId);
+        UserAndJobViewModel GetOnlyJobDetails(int id);
         UserAndJobViewModel ApplyForJob(int jobId, string userId);
         UserAndJobViewModel EditApplication(int jobId, string userId);
 
