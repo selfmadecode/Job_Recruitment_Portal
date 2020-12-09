@@ -45,7 +45,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.8.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.8.8\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=2.10.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>packages\MailKit.2.10.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MimeKit, Version=2.10.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>packages\MimeKit.2.10.0\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -62,11 +71,15 @@
       <HintPath>packages\Ninject.Web.WebApi.3.3.1\lib\net45\Ninject.Web.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -202,11 +215,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectResolver.cs" />
+    <Compile Include="Infrastructure\ViewModels\NumberOfApplication.cs" />
     <Compile Include="Infrastructure\ViewModels\UserAndJobViewModel.cs" />
     <Compile Include="Infrastructure\ViewModels\JobViewModel.cs" />
     <Compile Include="Interfaces\IAdminDashboardServices.cs" />
     <Compile Include="Interfaces\IJobServices.cs" />
     <Compile Include="Interfaces\IApplicantDashboardServices.cs" />
+    <Compile Include="Interfaces\IMail.cs" />
     <Compile Include="Migrations\202012031641068_firstMigration.cs" />
     <Compile Include="Migrations\202012031641068_firstMigration.Designer.cs">
       <DependentUpon>202012031641068_firstMigration.cs</DependentUpon>
@@ -253,7 +268,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminEmailForNotification.cs" />
     <Compile Include="Models\Applicant.cs" />
+    <Compile Include="Models\JobApplicationStatus.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobCategory.cs" />
@@ -262,6 +279,7 @@
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminDashboardServices.cs" />
+    <Compile Include="Services\EmailHelper.cs" />
     <Compile Include="Services\JobServices.cs" />
     <Compile Include="Services\Context.cs" />
     <Compile Include="Services\ApplicantDashboardServices.cs" />
@@ -938,6 +956,9 @@
     <Content Include="Views\Job\ApplyForJob.cshtml" />
     <Content Include="Views\Job\ApplicationStatus.cshtml" />
     <Content Include="Views\ApplicantDashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\AllApplicants.cshtml" />
+    <Content Include="Views\Dashboard\PendingApplications.cshtml" />
+    <Content Include="Views\Dashboard\ApplicationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

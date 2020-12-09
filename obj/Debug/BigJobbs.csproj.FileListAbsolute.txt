@@ -133,3 +133,13 @@ C:\Users\SelfMade\source\repos\BigJobbs\obj\Debug\BigJobbs.Migrations.AddedAppli
 C:\Users\SelfMade\source\repos\BigJobbs\obj\Debug\BigJobbs.Migrations.AddJobApplicationStatusToApplicant.resources
 C:\Users\SelfMade\source\repos\BigJobbs\obj\Debug\BigJobbs.Migrations.ChangedSexToStringInApplicant.resources
 C:\Users\SelfMade\source\repos\BigJobbs\obj\Debug\BigJobbs.Migrations.RemovedSexFromApplicant.resources
+C:\Users\SelfMade\source\repos\BigJobbs\bin\BouncyCastle.Crypto.dll
+C:\Users\SelfMade\source\repos\BigJobbs\bin\MailKit.dll
+C:\Users\SelfMade\source\repos\BigJobbs\bin\MimeKit.dll
+C:\Users\SelfMade\source\repos\BigJobbs\bin\System.Buffers.dll
+C:\Users\SelfMade\source\repos\BigJobbs\bin\BouncyCastle.Crypto.xml
+C:\Users\SelfMade\source\repos\BigJobbs\bin\MailKit.pdb
+C:\Users\SelfMade\source\repos\BigJobbs\bin\MailKit.xml
+C:\Users\SelfMade\source\repos\BigJobbs\bin\MimeKit.pdb
+C:\Users\SelfMade\source\repos\BigJobbs\bin\MimeKit.xml
+C:\Users\SelfMade\source\repos\BigJobbs\bin\System.Buffers.xml

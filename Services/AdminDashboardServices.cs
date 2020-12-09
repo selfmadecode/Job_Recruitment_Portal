@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace BigJobbs.Services
@@ -12,9 +13,11 @@ namespace BigJobbs.Services
     public class AdminDashboardServices : IAdminDashboardServices
     {
         readonly Context Ctx;
-        public AdminDashboardServices(Context ctx)
+        IMail _mail;
+        public AdminDashboardServices(Context ctx, IMail mail)
         {
             Ctx = ctx;
+            _mail = mail;
         }
 
         public IEnumerable<JobCategory> GetAllJobCategories() => Ctx._dbContext.JobCategories.ToList();
@@ -65,5 +68,54 @@ namespace BigJobbs.Services
 
             Ctx._dbContext.SaveChanges();
         }
+
+        public IEnumerable<Applicant> GetAllApplicants() => Ctx._dbContext.Applicants.Include(j => j.Job).Include(j => j.Job.JobType).ToList();
+
+        public IEnumerable<Applicant> GetApplications(string condition) => Ctx._dbContext.Applicants.Include(j => j.Job)
+            .Where(i => i.JobApplicationStatus == condition)
+            .Include(j => j.Job.JobType).ToList();
+
+        public NumberOfApplication NumberOfApplication()
+        {
+            var totalJobs = NumberOfJobs();
+            var pendingApplications = GetApplications(JobApplicationStatus.pending).Count();
+            var acceptedApplications = GetApplications(JobApplicationStatus.accepted).Count();
+            var rejectedApplications = GetApplications(JobApplicationStatus.rejected).Count();
+
+            var applications = new NumberOfApplication
+            {
+                TotalJobs = totalJobs,
+                PendingApplications = pendingApplications,
+                AcceptedApplications = acceptedApplications,
+                RejectedApplications = rejectedApplications
+            };
+
+            return applications;
+        }
+
+        public Applicant GetJobAndApplicantDetails(int applicantId, int jobId) => Ctx._dbContext.Applicants
+            .Include(j => j.Job)
+            .Include(j => j.Job.JobType)
+            .FirstOrDefault(i => i.Id == applicantId && i.Job.Id == jobId);
+
+        public void ProcessApplication(int applicantId, int jobId, string condition)
+        {
+            var application = GetJobAndApplicantDetails(applicantId, jobId);
+            application.JobApplicationStatus = condition;
+
+            Ctx._dbContext.SaveChanges();
+            NotifyApplicant(application, condition);
+        }
+        public void NotifyApplicant(Applicant applicant, string condition)
+        {
+            //send mail with the applicant info
+            var messageBody = $"Your application has been processed!," +
+                $" You applied for a/an {applicant.Job.Name} position in {applicant.Job.HiringCompany};" +
+                $" your application has been {condition}";
+
+            _mail.SendMail(applicant.EmailAddress, "Application Notification", messageBody);
+
+        }
     }
+    
 }

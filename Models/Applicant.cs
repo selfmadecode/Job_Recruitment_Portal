@@ -31,7 +31,7 @@ namespace BigJobbs.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        public string JobApplicationStatus { get; set; } = "Pending";
+        public string JobApplicationStatus { get; set; } = Models.JobApplicationStatus.pending;
 
         public ApplicationUser User { get; set; }
         public string UserId { get; set; }

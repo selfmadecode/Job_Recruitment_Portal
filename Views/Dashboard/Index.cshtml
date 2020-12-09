@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model int
+@model BigJobbs.Infrastructure.ViewModels.NumberOfApplication
 
 @{
     Layout = null;
@@ -70,15 +70,15 @@
                                 <div class="col-sm-6 pr-sm-2 statistics-grid">
                                     <div class="card card_border border-primary-top p-4">
                                         <i class="lnr lnr-users"> </i>
-                                        <h3 class="text-primary number">@Model</h3>
+                                        <h3 class="text-primary number">@Model.TotalJobs</h3>
                                         <p class="stat-text">Total Jobs</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 pl-sm-2 statistics-grid">
                                     <div class="card card_border border-primary-top p-4">
                                         <i class="lnr lnr-eye"> </i>
-                                        <h3 class="text-secondary number">51.25 K</h3>
-                                        <p class="stat-text">Daily Visitors</p>
+                                        <h3 class="text-secondary number">@Model.PendingApplications</h3>
+                                        <p class="stat-text">Pending Application</p>
                                     </div>
                                 </div>
                             </div>
@@ -88,15 +88,15 @@
                                 <div class="col-sm-6 pr-sm-2 statistics-grid">
                                     <div class="card card_border border-primary-top p-4">
                                         <i class="lnr lnr-cloud-download"> </i>
-                                        <h3 class="text-success number">166.89 M</h3>
-                                        <p class="stat-text">Downloads</p>
+                                        <h3 class="text-success number">@Model.AcceptedApplications</h3>
+                                        <p class="stat-text">Accepted Applications</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 pl-sm-2 statistics-grid">
                                     <div class="card card_border border-primary-top p-4">
                                         <i class="lnr lnr-cart"> </i>
-                                        <h3 class="text-danger number">1,250k</h3>
-                                        <p class="stat-text">Purchased</p>
+                                        <h3 class="text-danger number">@Model.RejectedApplications</h3>
+                                        <p class="stat-text">Rejected Application</p>
                                     </div>
                                 </div>
                             </div>

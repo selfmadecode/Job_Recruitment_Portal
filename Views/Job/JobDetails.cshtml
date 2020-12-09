@@ -84,7 +84,7 @@
                     </ul>
                     <div class="apply-btn2">
                         @{
-                            if (Model.Applicant.Id > 0 && Model.Applicant.Job.Id == Model.Job.Id)
+                            if (Model.Applicant != null && Model.Applicant.Id > 0 && Model.Applicant.Job.Id == Model.Job.Id)
                             {
                                 <button class="btn">You've already applied for this Job</button>
                             }

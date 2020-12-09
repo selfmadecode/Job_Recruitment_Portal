@@ -9,5 +9,6 @@ namespace BigJobbs.Models
     {
         public const string admin = "Admin";
         public const string canManagerUser = "CanManagerUser";
+
     }
 }

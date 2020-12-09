@@ -10,13 +10,16 @@ namespace BigJobbs.Interfaces
 {
     public interface IAdminDashboardServices
     {
-        int NumberOfJobs();
+        NumberOfApplication NumberOfApplication();
         IEnumerable<JobCategory> GetAllJobCategories();
         IEnumerable<JobType> GetAllJobTypes();
         void SaveJob(Job job);
         void UpdateJobInDb(Job job);
         IEnumerable<Job> GetAllJobs();
         JobViewModel EditJob(int id);
-
+        IEnumerable<Applicant> GetAllApplicants();
+        IEnumerable<Applicant> GetApplications(string condition);
+        Applicant GetJobAndApplicantDetails(int applicantId, int jobId);
+        void ProcessApplication(int applicantId, int jobId, string condition);
     }
 }

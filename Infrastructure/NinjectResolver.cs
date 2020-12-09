@@ -24,6 +24,7 @@ namespace BigJobbs.Infrastructure
              _kernel.Bind<IJobServices>().To<JobServices>();
              _kernel.Bind<IApplicantDashboardServices>().To<ApplicantDashboardServices>();
              _kernel.Bind<IAdminDashboardServices>().To<AdminDashboardServices>();
+            _kernel.Bind<IMail>().To<EmailHelper>();
 
         }
 

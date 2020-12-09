@@ -15,27 +15,39 @@
                 <th>Hiring Company</th>
                 <th>Salary</th>
                 <th>Job Type</th>
-                <th></th>
+                <th>App. Status</th>
                 <th></th>
                 <th></th>
             </tr>
             @foreach (var application in Model)
             {
-                <tr class="info">
-                    @*<td>@Html.ActionLink(application.Job.Name, "EditJob", "Dashboard", new { id = application.Job.Name }, null)</td>*@
-                    <td>@application.Job.Name</td>
-                    <td>@application.Job.HiringCompany</td>
-                    <td>@application.Job.Salary</td>
-                    <td>@application.Job.JobType.Name </td>
+        <tr class="info">
+            @*<td>@Html.ActionLink(application.Job.Name, "EditJob", "Dashboard", new { id = application.Job.Name }, null)</td>*@
+            <td>@application.Job.Name</td>
+            <td>@application.Job.HiringCompany</td>
+            <td>@application.Job.Salary</td>
+            <td>@application.Job.JobType.Name </td>
+            <td>@application.JobApplicationStatus </td>
+            @{
+                if (application.JobApplicationStatus == BigJobbs.Models.JobApplicationStatus.pending)
+                {
                     <td>
                         @Html.ActionLink("Edit Application", "EditApplication", "Job", new { jobId = application.Job.Id },
                          new { @class = "btn btn-info" })
                     </td>
+                }
+                else
+                {
                     <td>
-                        @Html.ActionLink("Job Details", "JobDetails", "Job", new { id = application.Job.Id },
-                             new { @class = "btn btn-success" })
+                        Your application have has processed!
                     </td>
-                </tr>
+                }
+            }
+            <td>
+                @Html.ActionLink("Job Details", "JobDetails", "Job", new { id = application.Job.Id },
+                     new { @class = "btn btn-success" })
+            </td>
+        </tr>
             }
         </table>
     }

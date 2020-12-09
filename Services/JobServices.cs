@@ -14,10 +14,12 @@ namespace BigJobbs.Services
     public class JobServices : IJobServices
     {
         readonly Context Ctx;
+        IMail _mail;
 
-        public JobServices(Context _ctx)
+        public JobServices(Context _ctx, IMail mail)
         {
             Ctx = _ctx;
+            _mail = mail;
         }
 
         public IEnumerable<Job> GetAllJobs() => Ctx._dbContext.Jobs.Include(c => c.JobCategory).Include(t => t.JobType).ToList();
@@ -95,7 +97,7 @@ namespace BigJobbs.Services
         public void SaveApplicantion(UserAndJobViewModel userAndJobViewModel)
         {
             // Save User Application
-            var appplicant = new Applicant
+            var applicant = new Applicant
             {
                 FirstName = userAndJobViewModel.Applicant.FirstName,
                 LastName = userAndJobViewModel.Applicant.LastName,
@@ -104,9 +106,22 @@ namespace BigJobbs.Services
                 UserId = userAndJobViewModel.Applicant.UserId,
                 JobId = userAndJobViewModel.Job.Id
             };
+            
 
-            Ctx._dbContext.Applicants.Add(appplicant);
+            Ctx._dbContext.Applicants.Add(applicant);
             Ctx._dbContext.SaveChanges();
+
+            //send mail with the applicant info
+            var emailBody = $"{userAndJobViewModel.Applicant.FirstName +" "+ userAndJobViewModel.Applicant.LastName} applied as a/an: {userAndJobViewModel.Job.Name}" +
+                $"in {userAndJobViewModel.Job.HiringCompany};";
+
+            NotifyAdmin(emailBody);
+        }
+        public void NotifyAdmin(string emailBody)
+        {
+            string adminEmail = AdminEmailForNotification.adminEmailAddress;
+
+            _mail.SendMail(adminEmail, "Application Notification", emailBody);
         }
         public UserAndJobViewModel EditApplication(int jobId, string currentUserId)
         {
@@ -117,6 +132,12 @@ namespace BigJobbs.Services
 
             if (jobInDb == null)
                 return null;
+
+            // If the application has been processes and user tries to update application
+            if(applicantApplication.JobApplicationStatus != JobApplicationStatus.pending)
+            {
+                return null;
+            }
 
             var jobApplicant = new Applicant
             {
@@ -159,6 +180,11 @@ namespace BigJobbs.Services
             applicationToUpdate.Id = userAndJobViewModel.Applicant.Id;
 
             Ctx._dbContext.SaveChanges();
+
+            var emailBody = $"{applicationToUpdate.FirstName + applicationToUpdate.LastName} updated application" +
+                $"in {applicationToUpdate.Job.HiringCompany};";
+
+            NotifyAdmin(emailBody);
         }
     }
 }

@@ -1,0 +1,94 @@
+﻿@model BigJobbs.Models.Applicant
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AddJob</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/assets/css/style-starter.css">
+    <link rel="stylesheet" href="~/Content/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link href="~/Content/lib/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet" />
+</head>
+<body>
+    @Html.Partial("_SideBar")
+    @Html.Partial("_DashboardHeader")
+    <div>
+        <div class="main-content">
+            <div class="container-fluid content-top-gap">
+
+                <h1>Applicant Details</h1>
+                <!-- statistics data -->
+                <div class="panel-body">
+                    @if (Model == null)
+                    {
+                        <p>No Available Applicants</p>
+                    }
+                    else
+                    {
+                        <table id="items" class="table table-hover">
+                            <tr class="info">
+                                <th>First Name</th>
+                                <th>last Name</th>
+                                <th>Applicant Email</th>
+                                <th>App. Status</th>
+                                <th>Phone Number</th>
+                                <th>Applied for</th>
+                                <th>Hiring Company</th>
+                            </tr>
+                            <tr class="info">
+                                <td>@Model.FirstName</td>
+                                <td>@Model.LastName</td>
+                                <td>@Model.EmailAddress</td>
+                                <td>@Model.JobApplicationStatus</td>
+                                <td>@Model.PhoneNumber</td>
+                                <td>@Model.Job.Name</td>
+                                <td>@Model.Job.HiringCompany</td>
+                            </tr>
+
+                        </table>
+                    }
+
+                </div>
+                <h3>Job details</h3>
+                <lable>Job Name</lable>
+                <p>@Model.Job.Name</p>
+
+                <lable>Hiring Company</lable>
+                <p>@Model.Job.HiringCompany</p>
+
+                <lable>Job Location</lable>
+                <p>@Model.Job.Location</p>
+
+                <lable>Job Type</lable>
+                <p>@Model.Job.JobType.Name</p>
+
+                <lable>Salary</lable>
+                <p>@Model.Job.Salary</p>
+
+                <lable>Date Posted</lable>
+                <p>@Model.Job.DatePosted</p>
+
+                <lable>Job Description</lable>
+                <p>@Html.Raw(Model.Job.Description)</p>
+
+
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Footer")
+
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jquery")
+
+    }
+
+</body>
+</html>
+

@@ -4,13 +4,14 @@ using BigJobbs.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace BigJobbs.Controllers
 {
     // to avoid break in code when the role name is changed
-    [Authorize(Roles = BigJobbs.Models.Roles.admin)]
+    // [Authorize(Roles = BigJobbs.Models.Roles.admin)]
     public class DashboardController : Controller
     {
         IAdminDashboardServices adminDS;
@@ -18,11 +19,12 @@ namespace BigJobbs.Controllers
         public DashboardController(IAdminDashboardServices iAdS)
         {
             adminDS = iAdS;
+
         }
         // GET: Dashboard
         public ActionResult Index()
         {
-            int NumberOfJobs = adminDS.NumberOfJobs();
+            var NumberOfJobs = adminDS.NumberOfApplication();
             return View(NumberOfJobs);
         }
         [HttpGet]
@@ -78,6 +80,34 @@ namespace BigJobbs.Controllers
                 return HttpNotFound("No job matched the Id");
 
             return View("JobForm", jobInDb);
+        }
+        public ActionResult GetAllApplicants()
+        {
+            var allApplicants = adminDS.GetAllApplicants();
+            return View("AllApplicants", allApplicants);
+        }
+        public ActionResult GetPendingApplications()
+        {
+            var pendingApplications = adminDS.GetApplications(JobApplicationStatus.pending);
+            return View("PendingApplications", pendingApplications);
+        }
+        public ActionResult ApplicationDetails(int applicantId, int jobId)
+        {
+            var application = adminDS.GetJobAndApplicantDetails(applicantId, jobId);
+            if (application == null)
+                return HttpNotFound("No user matching the Id");
+
+            return View(application);
+        }
+        public ActionResult AcceptApplication(int applicantId, int jobId)
+        {
+            adminDS.ProcessApplication(applicantId, jobId, JobApplicationStatus.accepted);
+            return RedirectToAction("GetPendingApplications");
+        }
+        public ActionResult RejectApplication(int applicantId, int jobId)
+        {
+            adminDS.ProcessApplication(applicantId, jobId, JobApplicationStatus.rejected);
+            return RedirectToAction("GetPendingApplications");
         }
     }
 }

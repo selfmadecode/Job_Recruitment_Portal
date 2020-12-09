@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BigJobbs.Models.Applicant>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AddJob</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/assets/css/style-starter.css">
+    <link rel="stylesheet" href="~/Content/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link href="~/Content/lib/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet" />
+</head>
+<body>
+    @Html.Partial("_SideBar")
+    @Html.Partial("_DashboardHeader")
+    <div>
+        <div class="main-content">
+            <div class="container-fluid content-top-gap">
+
+                <h1>All Applicants</h1>
+                <!-- statistics data -->
+                <div class="panel-body">
+                    @if (!Model.Any())
+                    {
+                        <p>No Available Applicants</p>
+                    }
+                    else
+                    {
+                        <table id="items" class="table table-hover">
+                            <tr class="info">
+                                <th>Applicant Email</th>
+                                <th>Job</th>
+                                <th>Hiring Company</th>
+                                <th>Job Type</th>
+                                <th>Application status</th>
+                                <th>App. Details</th>
+                            </tr>
+                            @foreach (var applicant in Model)
+                            {
+                        <tr class="info">
+                            <td>@applicant.EmailAddress</td>
+                            <td>@applicant.Job.Name</td>
+                            <td>@applicant.Job.HiringCompany</td>
+                            <td>@applicant.Job.JobType.Name</td>
+                            <td>@applicant.JobApplicationStatus </td>
+                            <td>
+                                @Html.ActionLink("Details", "ApplicationDetails", "Dashboard", new { applicantId = applicant.Id, jobId = applicant.Job.Id },
+                                 new { @class = "btn btn-info" })
+
+                            </td>
+                        </tr>
+                            }
+                        </table>
+                    }
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Footer")
+
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jquery")
+
+    }
+
+</body>
+</html>
+
