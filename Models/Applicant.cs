@@ -33,8 +33,8 @@ namespace BigJobbs.Models
 
         public string JobApplicationStatus { get; set; } = Models.JobApplicationStatus.pending;
 
-
-        [Required(ErrorMessage = "Passport Required! in .jpe, jpeg or .png format")]
+        //USER PASSPORT MODEL
+        [Required(ErrorMessage = "Passport Required! in .jpg, jpeg or .png format")]
         [Display(Name = "Upload your Passport")]
 
         //Assigned a default in order to avoid null reference when modelstate.isvalid is checked
@@ -42,6 +42,18 @@ namespace BigJobbs.Models
 
         [NotMapped]
         public HttpPostedFileBase PassportFile { get; set; }
+
+
+        //USER PDF
+        [Required(ErrorMessage = "CV Required in .pdf format!")]
+        [Display(Name = "CV in pdf format")]
+
+        //Assigned a default in order to avoid null reference when modelstate.isvalid is checked
+        public string PdfPath { get; set; } = "~/Content/JobImages/";
+
+        [NotMapped]
+        public HttpPostedFileBase PdfFile { get; set; }
+
 
         public ApplicationUser User { get; set; }
         public string UserId { get; set; }

@@ -76,15 +76,25 @@ namespace BigJobbs.Controllers
             var currentUserId = User.Identity.GetUserId();
 
             string passportExtension = Path.GetExtension(userAndJobViewModel.Applicant.PassportFile.FileName);
+            string pdfExtension = Path.GetExtension(userAndJobViewModel.Applicant.PdfFile.FileName);
 
-            if(!passportExtension.Contains(".jpg") || !passportExtension.Contains(".jpeg") || !passportExtension.Contains(".png"))
+            //Validate applicant passport...returns the view if the passport file is not in the correct format
+            if(!(passportExtension.Contains(".jpg") || passportExtension.Contains(".jpeg") || passportExtension.Contains(".png")))
             {
                 ViewBag.PassportError = "Only .jpeg, .png or .jpg files allowed";
 
                 return View("ApplyForJob", userAndJobViewModel);
             }
 
+            //Validate applicant pdf...returns the view if the pdf file is not in the correct format
+            if (!pdfExtension.Contains(".pdf"))
+            {
+                ViewBag.PdfError = "Only .pdf files allowed";
 
+                return View("ApplyForJob", userAndJobViewModel);
+            }
+
+            // if the model is not in the right format
             if (!ModelState.IsValid)
             {
                 var userAndJob = new UserAndJobViewModel
@@ -94,7 +104,6 @@ namespace BigJobbs.Controllers
                 };
                 return View("ApplyForJob", userAndJob);
             }
-
 
             try
             {
@@ -107,6 +116,7 @@ namespace BigJobbs.Controllers
             {
                 ex.Message.ToString();
             }
+
             ViewBag.ApplicationStatus = "Congrats! Application Done";
             // add a page for successfully applied
             return View("ApplicationStatus", userAndJobViewModel);

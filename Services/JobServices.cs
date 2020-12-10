@@ -94,23 +94,36 @@ namespace BigJobbs.Services
 
         public ApplicationUser GetUser(string currentUserId) => Ctx._dbContext.Users.SingleOrDefault(i => i.Id == currentUserId);
 
-        public void SaveImage(UserAndJobViewModel appplicantDetails)
+        public void SaveImage(Applicant appplicantDetails)
         {
             // map the file path in DB to the image location(JobImages)
-            string fileName = Path.GetFileNameWithoutExtension(appplicantDetails.Applicant.PassportFile.FileName);
-            string extension = Path.GetExtension(appplicantDetails.Applicant.PassportFile.FileName);
+            string fileName = Path.GetFileNameWithoutExtension(appplicantDetails.PassportFile.FileName);
+            string extension = Path.GetExtension(appplicantDetails.PassportFile.FileName);
 
             fileName += DateTime.Now.ToString("yymmssfff") + extension;
-            appplicantDetails.Applicant.PassportPath = "~/Content/JobImages/" + fileName;
+            appplicantDetails.PassportPath = "~/Content/JobImages/" + fileName;
             fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/JobImages/"), fileName);
 
-            appplicantDetails.Applicant.PassportFile.SaveAs(fileName);
+            appplicantDetails.PassportFile.SaveAs(fileName);
+        }
+        public void SavePdf(Applicant appplicantDetails)
+        {
+            // map the file path in DB to the image location(Pdf)
+            string fileName = Path.GetFileNameWithoutExtension(appplicantDetails.PdfFile.FileName);
+            string extension = Path.GetExtension(appplicantDetails.PdfFile.FileName);
+
+            fileName += DateTime.Now.ToString("yymmssfff") + extension;
+            appplicantDetails.PdfPath = "~/Content/Pdf/" + fileName;
+            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Pdf/"), fileName);
+
+            appplicantDetails.PdfFile.SaveAs(fileName);
         }
 
 
         public void SaveApplicantion(UserAndJobViewModel userAndJobViewModel)
         {
-            SaveImage(userAndJobViewModel);
+            SaveImage(userAndJobViewModel.Applicant);
+            SavePdf(userAndJobViewModel.Applicant);
 
             // Save User Application
             var applicant = new Applicant
@@ -121,7 +134,8 @@ namespace BigJobbs.Services
                 PhoneNumber = userAndJobViewModel.Applicant.PhoneNumber,
                 UserId = userAndJobViewModel.Applicant.UserId,
                 JobId = userAndJobViewModel.Job.Id,
-                PassportPath = userAndJobViewModel.Applicant.PassportPath
+                PassportPath = userAndJobViewModel.Applicant.PassportPath,
+                PdfPath = userAndJobViewModel.Applicant.PdfPath
             };
             
 
@@ -183,7 +197,9 @@ namespace BigJobbs.Services
 
         public void UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId)
         {
-            SaveImage(userAndJobViewModel);
+            SaveImage(userAndJobViewModel.Applicant);
+            SavePdf(userAndJobViewModel.Applicant);
+
             // Get applicant application from DB and update the details
             var applicationToUpdate = GetApplicantApplication(currentUserId, userAndJobViewModel.Job.Id);
 
@@ -197,6 +213,7 @@ namespace BigJobbs.Services
             applicationToUpdate.User = userAndJobViewModel.Applicant.User;
             applicationToUpdate.Id = userAndJobViewModel.Applicant.Id;
             applicationToUpdate.PassportPath = userAndJobViewModel.Applicant.PassportPath;
+            applicationToUpdate.PdfPath = userAndJobViewModel.Applicant.PdfPath;
 
             Ctx._dbContext.SaveChanges();
 

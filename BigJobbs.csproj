@@ -274,6 +274,10 @@
     <Compile Include="Migrations\202012101503228_AddPassportToApplicantModel.Designer.cs">
       <DependentUpon>202012101503228_AddPassportToApplicantModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012101644142_AddPdfToApplicantModel.cs" />
+    <Compile Include="Migrations\202012101644142_AddPdfToApplicantModel.Designer.cs">
+      <DependentUpon>202012101644142_AddPdfToApplicantModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminEmailForNotification.cs" />
@@ -971,6 +975,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\JobImages\" />
+    <Folder Include="Content\Pdf\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1024,6 +1029,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012101503228_AddPassportToApplicantModel.resx">
       <DependentUpon>202012101503228_AddPassportToApplicantModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012101644142_AddPdfToApplicantModel.resx">
+      <DependentUpon>202012101644142_AddPdfToApplicantModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
