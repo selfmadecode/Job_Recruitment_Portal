@@ -27,6 +27,7 @@
                 @using (Html.BeginForm("SaveJob", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data", runat = "server" }))
                 {
                     @Html.ValidationSummary(false, "Please fix the following issues");
+                    <p style="color: red">@ViewBag.ImageError</p>
                     //excludepropertyErrors set to true in order to removes the list of errors and pass a default msg
                     <div class="form-group">
                         @Html.LabelFor(i => i.job.Name)
@@ -80,6 +81,7 @@
                         <input type="file" name=@Html.NameFor(i =>i.job.ImageFile) required runat="server" accept=".png, .jpg, .jpeg" />
                         @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
                         @Html.ValidationMessageFor(i => i.job.ImagePath)
+                        <p style="color: red">@ViewBag.ImageError</p>
                     </div>
                     @Html.HiddenFor(i => i.job.Id)
 

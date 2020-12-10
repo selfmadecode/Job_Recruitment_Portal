@@ -4,6 +4,7 @@
 {
     @Html.ValidationSummary(false, "Please fix the following issues");
     //excludepropertyErrors set to true in order to removes the list of errors and pass a default msg
+    <p style="color: red">@ViewBag.PassportError</p>
     <div class="form-group">
         @Html.LabelFor(i => i.Job.Name)
         <h1>@Model.Job.Name</h1>
@@ -24,6 +25,13 @@
     <div class="form-group">
         @Html.LabelFor(i => i.Applicant.PhoneNumber)
         @Html.TextBoxFor(i => i.Applicant.PhoneNumber, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Applicant.PassportPath)
+        <input type="file" name=@Html.NameFor(i =>i.Applicant.PassportFile) required runat="server" accept=".png, .jpg, .jpeg" />
+        @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
+        @Html.ValidationMessageFor(i => i.Applicant.PassportPath)
+        <p style="color: red">@ViewBag.PassportError</p>
     </div>
     @Html.HiddenFor(i => i.Job.Id)
     @Html.HiddenFor(i => i.Applicant.Id)

@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -89,13 +90,28 @@ namespace BigJobbs.Services
             };
 
             return applicanVm;
-
         }
 
         public ApplicationUser GetUser(string currentUserId) => Ctx._dbContext.Users.SingleOrDefault(i => i.Id == currentUserId);
 
+        public void SaveImage(UserAndJobViewModel appplicantDetails)
+        {
+            // map the file path in DB to the image location(JobImages)
+            string fileName = Path.GetFileNameWithoutExtension(appplicantDetails.Applicant.PassportFile.FileName);
+            string extension = Path.GetExtension(appplicantDetails.Applicant.PassportFile.FileName);
+
+            fileName += DateTime.Now.ToString("yymmssfff") + extension;
+            appplicantDetails.Applicant.PassportPath = "~/Content/JobImages/" + fileName;
+            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/JobImages/"), fileName);
+
+            appplicantDetails.Applicant.PassportFile.SaveAs(fileName);
+        }
+
+
         public void SaveApplicantion(UserAndJobViewModel userAndJobViewModel)
         {
+            SaveImage(userAndJobViewModel);
+
             // Save User Application
             var applicant = new Applicant
             {
@@ -104,7 +120,8 @@ namespace BigJobbs.Services
                 EmailAddress = userAndJobViewModel.Applicant.EmailAddress,
                 PhoneNumber = userAndJobViewModel.Applicant.PhoneNumber,
                 UserId = userAndJobViewModel.Applicant.UserId,
-                JobId = userAndJobViewModel.Job.Id
+                JobId = userAndJobViewModel.Job.Id,
+                PassportPath = userAndJobViewModel.Applicant.PassportPath
             };
             
 
@@ -166,6 +183,7 @@ namespace BigJobbs.Services
 
         public void UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId)
         {
+            SaveImage(userAndJobViewModel);
             // Get applicant application from DB and update the details
             var applicationToUpdate = GetApplicantApplication(currentUserId, userAndJobViewModel.Job.Id);
 
@@ -178,6 +196,7 @@ namespace BigJobbs.Services
             applicationToUpdate.Job = userAndJobViewModel.Job;
             applicationToUpdate.User = userAndJobViewModel.Applicant.User;
             applicationToUpdate.Id = userAndJobViewModel.Applicant.Id;
+            applicationToUpdate.PassportPath = userAndJobViewModel.Applicant.PassportPath;
 
             Ctx._dbContext.SaveChanges();
 

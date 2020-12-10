@@ -3,6 +3,7 @@ using BigJobbs.Interfaces;
 using BigJobbs.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -45,6 +46,10 @@ namespace BigJobbs.Controllers
         [HttpPost]
         public ActionResult SaveJob(JobViewModel newJob)
         {
+
+            string imageExtenstion = Path.GetExtension(newJob.job.ImageFile.FileName);
+
+
             if (!ModelState.IsValid)
             {
                 var job = new JobViewModel
@@ -56,7 +61,23 @@ namespace BigJobbs.Controllers
                 };
                 return View("JobForm", job);
             }
-            if(newJob.job.Id == 0)
+
+            if (!imageExtenstion.Contains(".jpg") || !imageExtenstion.Contains(".jpeg") || !imageExtenstion.Contains(".png"))
+            {
+                var job = new JobViewModel
+                {
+                    job = newJob.job,
+                    jobCategory = adminDS.GetAllJobCategories(),
+                    jobType = adminDS.GetAllJobTypes()
+
+                };
+
+                ViewBag.ImageError = "Only .jpeg, .png or .jpg files allowed";
+
+                return View("JobForm", job);
+            }   
+
+            if (newJob.job.Id == 0)
             {
                 adminDS.SaveJob(newJob.job);
                 return RedirectToAction("Index");

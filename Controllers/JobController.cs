@@ -3,6 +3,7 @@ using BigJobbs.Interfaces;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -73,6 +74,16 @@ namespace BigJobbs.Controllers
         public ActionResult SaveApplication(UserAndJobViewModel userAndJobViewModel)
         {
             var currentUserId = User.Identity.GetUserId();
+
+            string passportExtension = Path.GetExtension(userAndJobViewModel.Applicant.PassportFile.FileName);
+
+            if(!passportExtension.Contains(".jpg") || !passportExtension.Contains(".jpeg") || !passportExtension.Contains(".png"))
+            {
+                ViewBag.PassportError = "Only .jpeg, .png or .jpg files allowed";
+
+                return View("ApplyForJob", userAndJobViewModel);
+            }
+
 
             if (!ModelState.IsValid)
             {
