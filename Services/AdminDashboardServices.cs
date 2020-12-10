@@ -4,6 +4,7 @@ using BigJobbs.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -31,8 +32,22 @@ namespace BigJobbs.Services
         {
             return Ctx._dbContext.Jobs.Include(c => c.JobCategory).Include(t => t.JobType).Count();
         }
+        public void SaveImage(Job newJob)
+        {
+            // map the file path in DB to the image location(JobImages)
+            string fileName = Path.GetFileNameWithoutExtension(newJob.ImageFile.FileName);
+            string extension = Path.GetExtension(newJob.ImageFile.FileName);
+
+            fileName += DateTime.Now.ToString("yymmssfff") + extension;
+            newJob.ImagePath = "~/Content/JobImages/" + fileName;
+            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/JobImages/"), fileName);
+
+            newJob.ImageFile.SaveAs(fileName);
+        }
         public void SaveJob(Job newJob)
         {
+            SaveImage(newJob);
+
             Ctx._dbContext.Jobs.Add(newJob);
             Ctx._dbContext.SaveChanges();
         }
@@ -55,6 +70,8 @@ namespace BigJobbs.Services
 
         public void UpdateJobInDb(Job job)
         {
+            SaveImage(job);
+
             var jobToUpdate = Ctx._dbContext.Jobs.SingleOrDefault(i => i.Id == job.Id);
 
             jobToUpdate.DatePosted = job.DatePosted;
@@ -65,6 +82,7 @@ namespace BigJobbs.Services
             jobToUpdate.Location = job.Location;
             jobToUpdate.Salary = job.Salary;
             jobToUpdate.JobType = job.JobType;
+            jobToUpdate.ImagePath = job.ImagePath;
 
             Ctx._dbContext.SaveChanges();
         }

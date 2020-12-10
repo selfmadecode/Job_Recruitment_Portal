@@ -24,7 +24,7 @@
                 <h1>Add Job</h1>
                 <!-- statistics data -->
 
-                @using (Html.BeginForm("SaveJob", "Dashboard", FormMethod.Post, new { enctype = "Multipart/Form-Data" }))
+                @using (Html.BeginForm("SaveJob", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data", runat = "server" }))
                 {
                     @Html.ValidationSummary(false, "Please fix the following issues");
                     //excludepropertyErrors set to true in order to removes the list of errors and pass a default msg
@@ -75,12 +75,12 @@
                         @Html.ValidationMessageFor(i => i.job.Description)
 
                     </div>
-                    @*<div class="form-group">
-                            @Html.LabelFor(i => i.Item.ImagePath)
-                            <input type="file" name=@Html.NameFor(i =>i.Item.ImageFile) required />
-                            <input type="file" id="ImageFile" name="ImageFile" required/>
-                            @Html.ValidationMessageFor(i => i.Item.ImagePath)
-                        </div>*@
+                    <div class="form-group">
+                        @Html.LabelFor(i => i.job.ImagePath)
+                        <input type="file" name=@Html.NameFor(i =>i.job.ImageFile) required runat="server" accept=".png, .jpg, .jpeg" />
+                        @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
+                        @Html.ValidationMessageFor(i => i.job.ImagePath)
+                    </div>
                     @Html.HiddenFor(i => i.job.Id)
 
                     <button type="submit" class="btn btn-success">Save</button>

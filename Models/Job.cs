@@ -54,5 +54,16 @@ namespace BigJobbs.Models
         [Display (Name = "Job Type")]
         public int JobTypeId { get; set; }
 
+
+        [Required(ErrorMessage = "Choose a file")]
+        [Display(Name = "Upload Job Image")]
+
+        //Assigned a default in order to avoid null reference when modelstate.isvalid is checked
+        public string ImagePath { get; set; } = "~/Content/JobImages/";
+
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
+
     }
 }
