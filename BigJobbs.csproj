@@ -219,6 +219,7 @@
     <Compile Include="Infrastructure\ViewModels\UserAndJobViewModel.cs" />
     <Compile Include="Infrastructure\ViewModels\JobViewModel.cs" />
     <Compile Include="Interfaces\IAdminDashboardServices.cs" />
+    <Compile Include="Interfaces\IFile.cs" />
     <Compile Include="Interfaces\IJobServices.cs" />
     <Compile Include="Interfaces\IApplicantDashboardServices.cs" />
     <Compile Include="Interfaces\IMail.cs" />
@@ -292,6 +293,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminDashboardServices.cs" />
     <Compile Include="Services\EmailHelper.cs" />
+    <Compile Include="Services\FileServices.cs" />
     <Compile Include="Services\JobServices.cs" />
     <Compile Include="Services\Context.cs" />
     <Compile Include="Services\ApplicantDashboardServices.cs" />

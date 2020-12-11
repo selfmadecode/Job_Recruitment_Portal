@@ -38,6 +38,8 @@ namespace BigJobbs.Services
             else
                 return jobInDb;
         }
+
+
         public UserAndJobViewModel GetOnlyJobDetails(int id)
         {
             var onlyJobDetails = GetJobDetails(id);
@@ -50,6 +52,8 @@ namespace BigJobbs.Services
             };
             return onlyJob;
         }
+
+
         public UserAndJobViewModel GetJobAndApplicantDetails(int id, string userId)
         {
             var applicant = Ctx._dbContext.Applicants.FirstOrDefault(j => j.Job.Id == id && j.UserId == userId);
@@ -63,6 +67,8 @@ namespace BigJobbs.Services
             };
             return application;
         }
+
+
 
         public UserAndJobViewModel ApplyForJob(int jobId, string currentUserId)
         {
@@ -86,13 +92,14 @@ namespace BigJobbs.Services
             {
                 Job = jobInDb,
                 Applicant = applicant
-
             };
 
             return applicanVm;
         }
 
+
         public ApplicationUser GetUser(string currentUserId) => Ctx._dbContext.Users.SingleOrDefault(i => i.Id == currentUserId);
+
 
         public void SaveImage(Applicant appplicantDetails)
         {
@@ -106,6 +113,8 @@ namespace BigJobbs.Services
 
             appplicantDetails.PassportFile.SaveAs(fileName);
         }
+
+
         public void SavePdf(Applicant appplicantDetails)
         {
             // map the file path in DB to the image location(Pdf)
@@ -148,12 +157,15 @@ namespace BigJobbs.Services
 
             NotifyAdmin(emailBody);
         }
+
+
         public void NotifyAdmin(string emailBody)
         {
             string adminEmail = AdminEmailForNotification.adminEmailAddress;
 
             _mail.SendMail(adminEmail, "Application Notification", emailBody);
         }
+
         public UserAndJobViewModel EditApplication(int jobId, string currentUserId)
         {
             var jobInDb = GetJobDetails(jobId);
@@ -193,7 +205,10 @@ namespace BigJobbs.Services
             };
             return applicanVm;
         }
+
+
         public Applicant GetApplicantApplication(string currentUserId, int jobId) => Ctx._dbContext.Applicants.SingleOrDefault(i => i.UserId == currentUserId && i.JobId == jobId);
+
 
         public void UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId)
         {
@@ -217,8 +232,10 @@ namespace BigJobbs.Services
 
             Ctx._dbContext.SaveChanges();
 
+
             var emailBody = $"{applicationToUpdate.FirstName + applicationToUpdate.LastName} updated application" +
                 $"in {applicationToUpdate.Job.HiringCompany};";
+
 
             NotifyAdmin(emailBody);
         }

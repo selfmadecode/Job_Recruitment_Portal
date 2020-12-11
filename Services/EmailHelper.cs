@@ -36,14 +36,7 @@ namespace BigJobbs.Services
                     using (var client = new SmtpClient())
                     {
                         client.Connect("smtp.gmail.com", 587, false);
-
-                        // Note: since we don't have an OAuth2 token, disable
-                        // the XOAUTH2 authentication mechanism.
-                        //client.AuthenticationMechanisms.Remove("XOAUTH2");
-
-                        // Note: only needed if the SMTP server requires authentication
                         client.Authenticate("kentekz61@gmail.com", "19962929");
-
                         client.Send(emailMessage);
                         client.Disconnect(true);
 

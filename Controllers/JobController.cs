@@ -10,19 +10,28 @@ using System.Web.Mvc;
 
 namespace BigJobbs.Controllers
 {
+    [Authorize]
     public class JobController : Controller
     {
         IJobServices JobService;
-        public JobController(IJobServices jobService)
+        IFile fileExtension;
+
+
+        public JobController(IJobServices jobService, IFile _file)
         {
             JobService = jobService;
+            fileExtension = _file;
         }
+
+
         // GET: Job
         public ActionResult Index()
         {
             return View();
         }
-        // [Authorize]
+
+
+        [AllowAnonymous]
         public ActionResult JobDetails(int id)
         {
             var currentUserId = User.Identity.GetUserId();
@@ -46,7 +55,9 @@ namespace BigJobbs.Controllers
                 return View(jobAndApplicantDetails);
             }
         }
-        [Authorize]
+
+
+
         public ActionResult ApplyForJob(int jobId)
         {
             var currentUserId = User.Identity.GetUserId();
@@ -59,6 +70,7 @@ namespace BigJobbs.Controllers
             return View(jobDetails);
         }
 
+
         public ActionResult EditApplication(int jobId)
         {
             var currentUserId = User.Identity.GetUserId();
@@ -70,6 +82,9 @@ namespace BigJobbs.Controllers
 
             return View("ApplyForJob", jobDetails);
         }
+
+
+
         [HttpPost]
         public ActionResult SaveApplication(UserAndJobViewModel userAndJobViewModel)
         {
@@ -79,20 +94,27 @@ namespace BigJobbs.Controllers
             string pdfExtension = Path.GetExtension(userAndJobViewModel.Applicant.PdfFile.FileName);
 
             //Validate applicant passport...returns the view if the passport file is not in the correct format
-            if(!(passportExtension.Contains(".jpg") || passportExtension.Contains(".jpeg") || passportExtension.Contains(".png")))
+            var isJpeg = fileExtension.IsJpegOrPng(passportExtension);
+
+
+            if(isJpeg == false)
             {
                 ViewBag.PassportError = "Only .jpeg, .png or .jpg files allowed";
 
                 return View("ApplyForJob", userAndJobViewModel);
             }
 
+
+            var isPdf = fileExtension.IsPdf(pdfExtension);
+
             //Validate applicant pdf...returns the view if the pdf file is not in the correct format
-            if (!pdfExtension.Contains(".pdf"))
+            if(isPdf == false)
             {
                 ViewBag.PdfError = "Only .pdf files allowed";
 
                 return View("ApplyForJob", userAndJobViewModel);
             }
+
 
             // if the model is not in the right format
             if (!ModelState.IsValid)
@@ -102,8 +124,10 @@ namespace BigJobbs.Controllers
                     Applicant = userAndJobViewModel.Applicant,
                     Job = userAndJobViewModel.Job
                 };
+
                 return View("ApplyForJob", userAndJob);
             }
+
 
             try
             {
@@ -116,9 +140,6 @@ namespace BigJobbs.Controllers
             {
                 ex.Message.ToString();
             }
-
-            ViewBag.ApplicationStatus = "Congrats! Application Done";
-            // add a page for successfully applied
             return View("ApplicationStatus", userAndJobViewModel);
         }
     }

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/Content/assets/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="~/Content/Site.css" />
     <link href="~/Content/lib/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" />
 </head>
 <body>
     @Html.Partial("_SideBar")
@@ -20,67 +21,84 @@
     <div>
         <div class="main-content">
             <div class="container-fluid content-top-gap">
+                <div class="card">
+                    <!-- statistics data -->
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Applicant Details</h3>
+                        @if (Model == null)
+                        {
+                            <p>No Available Applicants</p>
+                        }
+                        else
+                        {
+                            <table id="items" class="table table-hover table-responsive text-center col-md-10" style="margin: auto;">
+                                <thead>
+                                    <tr class="bg-info">
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">last Name</th>
+                                        <th scope="col">Applicant Email</th>
+                                        <th scope="col">App. Status</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">Applied for</th>
+                                        <th scope="col">Hiring Company</th>
+                                    </tr>
+                                </thead>
+                                <tr class="">
+                                    <td>@Model.FirstName</td>
+                                    <td>@Model.LastName</td>
+                                    <td>@Model.EmailAddress</td>
+                                    <td>@Model.JobApplicationStatus</td>
+                                    <td>@Model.PhoneNumber</td>
+                                    <td>@Model.Job.Name</td>
+                                    <td>@Model.Job.HiringCompany</td>
+                                </tr>
 
-                <h1>Applicant Details</h1>
-                <!-- statistics data -->
-                <div class="panel-body">
-                    @if (Model == null)
-                    {
-                        <p>No Available Applicants</p>
-                    }
-                    else
-                    {
-                        <table id="items" class="table table-hover">
-                            <tr class="info">
-                                <th>First Name</th>
-                                <th>last Name</th>
-                                <th>Applicant Email</th>
-                                <th>App. Status</th>
-                                <th>Phone Number</th>
-                                <th>Applied for</th>
-                                <th>Hiring Company</th>
-                            </tr>
-                            <tr class="info">
-                                <td>@Model.FirstName</td>
-                                <td>@Model.LastName</td>
-                                <td>@Model.EmailAddress</td>
-                                <td>@Model.JobApplicationStatus</td>
-                                <td>@Model.PhoneNumber</td>
-                                <td>@Model.Job.Name</td>
-                                <td>@Model.Job.HiringCompany</td>
-                            </tr>
+                            </table>
+                            <div class="col-md-10" style="margin:auto; display:flex; justify-content: space-between; align-items: center">
+                                <img src="@Url.Content(Model.PassportPath)" alt="Passport" style="height: 100px; padding-top: 10px;" />
+                                <div><a class="btn btn-info" href="@Url.Content(Model.PdfPath)" target="_blank">View CV</a></div>
+                            </div>
 
-                        </table>
-                    }
+                            ////////////
+                            ///
+                            <h3>Job details</h3>
 
+                            <table id="items" class="table table-hover table-responsive text-center col-md-10" style="margin: auto;">
+                                <thead>
+                                    <tr class="bg-info">
+                                        <th scope="col">Job Name</th>
+                                        <th scope="col">Hiring Company</th>
+                                        <th scope="col">Job Location</th>
+                                        <th scope="col">Job Type</th>
+                                        <th scope="col">Salary</th>
+                                        <th scope="col">Date Posted</th>
+                                    </tr>
+                                </thead>
+                                <tr class="">
+                                    <td>@Model.Job.Name</td>
+                                    <td>@Model.Job.HiringCompany</td>
+                                    <td>@Model.Job.Location</td>
+                                    <td>@Model.Job.JobType.Name</td>
+                                    <td>@Model.Job.Salary</td>
+                                    <td>@Model.Job.DatePosted</td>
+                                </tr>
+
+                            </table>
+                            <table id="items" class="table table-hover table-responsive text-center col-md-10" style="margin: auto;">
+                                <thead>
+                                    <tr class="bg-info">
+                                        <th scope="col">Job Description</th>
+                                    </tr>
+                                </thead>
+                                <tr class="text-justify">
+                                    <td>@Html.Raw(Model.Job.Description)</td>
+                                </tr>
+
+                            </table>
+                        }
+
+                    </div>
                 </div>
-                <h3>cv <a href="@Url.Content(Model.PdfPath)" target="_blank">View Pdf</a> </h3>
-                <h3>Applicant Passport</h3>
-                <img src="@Url.Content(Model.PassportPath)" alt="Passport" style="height: 150px"/>
-                <h3>Job details</h3>
-                <lable>Job Name</lable>
-                <p>@Model.Job.Name</p>
-
-                <lable>Hiring Company</lable>
-                <p>@Model.Job.HiringCompany</p>
-
-                <lable>Job Location</lable>
-                <p>@Model.Job.Location</p>
-
-                <lable>Job Type</lable>
-                <p>@Model.Job.JobType.Name</p>
-
-                <lable>Salary</lable>
-                <p>@Model.Job.Salary</p>
-
-                <lable>Date Posted</lable>
-                <p>@Model.Job.DatePosted</p>
-
-                <lable>Job Description</lable>
-                <p>@Html.Raw(Model.Job.Description)</p>
-
-
-
             </div>
         </div>
     </div>
