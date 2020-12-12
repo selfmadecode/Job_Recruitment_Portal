@@ -20,6 +20,6 @@ namespace BigJobbs.Interfaces
         IEnumerable<Applicant> GetAllApplicants();
         IEnumerable<Applicant> GetApplications(string condition);
         Applicant GetJobAndApplicantDetails(int applicantId, int jobId);
-        void ProcessApplication(int applicantId, int jobId, string condition);
+        bool ProcessApplication(int applicantId, int jobId, string condition);
     }
 }

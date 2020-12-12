@@ -1,54 +1,84 @@
 ﻿@model IEnumerable<BigJobbs.Models.Applicant>
+@using Microsoft.AspNet.Identity
 
-<h1>All Jobs</h1>
+<style>
+    table{
 
-<div class="panel-body">
-    @if (!Model.Any())
-    {
-        <p>You've not applied for any job</p>
+        font-size: 17px;
+        width: 100%;
     }
-    else
-    {
-        <table id="items" class="table table-hover">
-            <tr class="info">
-                <th>Job Name</th>
-                <th>Hiring Company</th>
-                <th>Salary</th>
-                <th>Job Type</th>
-                <th>App. Status</th>
-                <th></th>
-                <th></th>
-            </tr>
-            @foreach (var application in Model)
+    .card{
+        margin-top: 50px;
+    }
+    td{
+        padding-left: 100px;
+    }
+    .btngreen{
+        background-color: green;
+    }
+    .btnblue {
+        background-color: rgba(10, 3, 73, 0.842);
+    }
+    .trrr{
+        background-color: rgba(10, 3, 73, 0.842);
+    }
+</style>
+
+<div class="container">
+    <h1 style="margin-top: 50px;">Welcome back <span style="color: deeppink">@User.Identity.GetUserName()!</span></h1>
+    <div class="card" style="margin-top: 10px">
+        <div class="card-body">
+            <h3 class="card-title" style="margin-bottom: 30px;">Here is a list of all your applications</h3>
+
+            @if (!Model.Any())
             {
-        <tr class="info">
-            @*<td>@Html.ActionLink(application.Job.Name, "EditJob", "Dashboard", new { id = application.Job.Name }, null)</td>*@
-            <td>@application.Job.Name</td>
-            <td>@application.Job.HiringCompany</td>
-            <td>@application.Job.Salary</td>
-            <td>@application.Job.JobType.Name </td>
-            <td>@application.JobApplicationStatus </td>
-            @{
-                if (application.JobApplicationStatus == BigJobbs.Models.JobApplicationStatus.pending)
-                {
-                    <td>
-                        @Html.ActionLink("Edit Application", "EditApplication", "Job", new { jobId = application.Job.Id },
-                         new { @class = "btn btn-info" })
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        Your application have has processed!
-                    </td>
-                }
+                <h3 class="btn btnblue">You've not applied for any job</h3>
             }
-            <td>
-                @Html.ActionLink("Job Details", "JobDetails", "Job", new { id = application.Job.Id },
-                     new { @class = "btn btn-success" })
-            </td>
-        </tr>
+            else
+            {
+                <table id="items" class="table table-hover table-striped table-responsive text-center">
+                    <tr style="background-color: rgba(10, 3, 73, 0.842); color: white" class="btnblue col-12">
+                        <th style="width: 15%">Job Name</th>
+                        <th style="width: 15%">Hiring Company</th>
+                        <th style="width: 15%">Salary</th>
+                        <th>Job Type</th>
+                        <th>App. Status</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @foreach (var application in Model)
+                    {
+                        <tr class="info">
+                            @*<td>@Html.ActionLink(application.Job.Name, "EditJob", "Dashboard", new { id = application.Job.Name }, null)</td>*@
+                            <td>@application.Job.Name</td>
+                            <td>@application.Job.HiringCompany</td>
+                            <td>@application.Job.Salary</td>
+                            <td>@application.Job.JobType.Name </td>
+                            <td>@application.JobApplicationStatus </td>
+                            @{
+                                if (application.JobApplicationStatus == BigJobbs.Models.JobApplicationStatus.pending)
+                                {
+                                    <td>
+                                        @Html.ActionLink("Edit Application", "EditApplication", "Job", new { jobId = application.Job.Id },
+                                         new { @class = "btn btnblue" })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        Your application have has processed!
+                                    </td>
+                                }
+                            }
+                            <td>
+                                @Html.ActionLink("Job Details", "JobDetails", "Job", new { id = application.Job.Id },
+                                     new { @class = "btn btngreen" })
+                            </td>
+                        </tr>
+                    }
+                </table>
             }
-        </table>
-    }
+        </div>
+
+    </div>
 </div>

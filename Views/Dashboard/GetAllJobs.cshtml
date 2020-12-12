@@ -21,50 +21,48 @@
         <div class="main-content">
             <div class="container-fluid content-top-gap">
 
-                <h1>All Job</h1>
-                <!-- statistics data -->
-                <div class="panel-body">
-                    @if (!Model.Any())
-                    {
-                        <p>No Available Jobs</p>
-                    }
-                    else
-                    {
-                        <table id="items" class="table table-hover">
-                            <tr class="info">
-                                <th>Name</th>
-                                <th>Hiring Company</th>
-                                <th>Salary</th>
-                                <th>Job Type</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            @foreach (var job in Model)
-                            {
-                                <tr class="info">
-                                    <td>@Html.ActionLink(job.Name, "EditJob", "Dashboard", new { id = job.Id }, null)</td>
-                                    <td>@job.HiringCompany</td>
-                                    <td>@job.Salary</td>
-                                    <td>@job.JobType.Name </td>
-                                    <td>
-                                        @Html.ActionLink("Edit", "EditJob", "Dashboard", new { id = job.Id },
-                                         new { @class = "btn btn-info" })
+                <div class="card" style="margin-top: -50px;">
 
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Details", "Details", "Dashboard", new { id = job.Id },
-                                             new { @class = "btn btn-success" })
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Delete", "Delete", "Dashboard", new { id = job.Id },
-                                       new { @class = "btn btn-danger" })
-                                        @*<button data-item-id="@item.Id" class="btn btn-danger delete-btn">Delete</button>*@
-                                    </td>
+                    <h3 class="card-title">All Job</h3>
+
+                    <div class="card-body">
+                        @if (!Model.Any())
+                        {
+                            <p>No Available Jobs</p>
+                        }
+                        else
+                        {
+                            <table id="items" class="table table-hover table-striped table-responsive text-center">
+                                <tr class="bg-info">
+                                    <th>Name</th>
+                                    <th>Hiring Company</th>
+                                    <th>Salary</th>
+                                    <th>Job Type</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
-                            }
-                        </table>
-                    }
+                                @foreach (var job in Model)
+                                {
+                                    <tr class="info">
+                                        <td>@Html.ActionLink(job.Name, "EditJob", "Dashboard", new { id = job.Id }, null)</td>
+                                        <td>@job.HiringCompany</td>
+                                        <td>@job.Salary</td>
+                                        <td>@job.JobType.Name </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "EditJob", "Dashboard", new { id = job.Id },
+                                             new { @class = "btn btn-info" })
+
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Details", "Details", "Dashboard", new { id = job.Id },
+                                                 new { @class = "btn btn-success" })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        }
+                    </div>
+
                 </div>
 
 

@@ -23,8 +23,8 @@ namespace BigJobbs.Interfaces
 
         ApplicationUser GetUser(string id);
 
-        void SaveApplicantion(UserAndJobViewModel userAndJobViewModel);
-        void UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId);
+        bool SaveApplication(UserAndJobViewModel userAndJobViewModel);
+        bool UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId);
 
     }
 }

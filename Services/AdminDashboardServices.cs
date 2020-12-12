@@ -116,13 +116,27 @@ namespace BigJobbs.Services
             .Include(j => j.Job.JobType)
             .FirstOrDefault(i => i.Id == applicantId && i.Job.Id == jobId);
 
-        public void ProcessApplication(int applicantId, int jobId, string condition)
+        public bool ProcessApplication(int applicantId, int jobId, string condition)
         {
-            var application = GetJobAndApplicantDetails(applicantId, jobId);
-            application.JobApplicationStatus = condition;
+            var pending = JobApplicationStatus.pending;
 
-            Ctx._dbContext.SaveChanges();
-            NotifyApplicant(application, condition);
+            var application = GetJobAndApplicantDetails(applicantId, jobId);
+
+            //If the application has already been worked on
+            //If the application status is not pending (i.e it has been processed before)
+            if (application.JobApplicationStatus != pending)
+                return true;
+            else
+            {
+                application.JobApplicationStatus = condition;
+
+                Ctx._dbContext.SaveChanges();
+                NotifyApplicant(application, condition);
+
+                return false;
+            }
+
+            
         }
         public void NotifyApplicant(Applicant applicant, string condition)
         {

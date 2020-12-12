@@ -11,10 +11,6 @@
 
         <div class="header-btn f-right d-lg-block">
             <ul>
-                <li id="name">
-                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "btn head-btn1" })
-                </li>
-
                 <li>
                     <a href="javascript:document.getElementById('logoutForm').submit()" class="btn head-btn2">Log off</a>
                 </li>

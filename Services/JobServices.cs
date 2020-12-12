@@ -129,8 +129,14 @@ namespace BigJobbs.Services
         }
 
 
-        public void SaveApplicantion(UserAndJobViewModel userAndJobViewModel)
+        public bool SaveApplication(UserAndJobViewModel userAndJobViewModel)
         {
+
+            if (userAndJobViewModel.Applicant.JobApplicationStatus != JobApplicationStatus.pending)
+            {
+                return true;
+            }
+
             SaveImage(userAndJobViewModel.Applicant);
             SavePdf(userAndJobViewModel.Applicant);
 
@@ -156,6 +162,8 @@ namespace BigJobbs.Services
                 $"in {userAndJobViewModel.Job.HiringCompany};";
 
             NotifyAdmin(emailBody);
+
+            return false;
         }
 
 
@@ -176,8 +184,12 @@ namespace BigJobbs.Services
             if (jobInDb == null)
                 return null;
 
-            // If the application has been processes and user tries to update application
-            if(applicantApplication.JobApplicationStatus != JobApplicationStatus.pending)
+            // Applicant did not apply for the job he/she wants to edit
+            if (applicantApplication == null)
+                return null;
+
+            // If the application has been processes and user tries to pull the record for update application
+            if (applicantApplication.JobApplicationStatus != JobApplicationStatus.pending)
             {
                 return null;
             }
@@ -203,6 +215,7 @@ namespace BigJobbs.Services
                 Applicant = jobApplicant
 
             };
+
             return applicanVm;
         }
 
@@ -210,13 +223,20 @@ namespace BigJobbs.Services
         public Applicant GetApplicantApplication(string currentUserId, int jobId) => Ctx._dbContext.Applicants.SingleOrDefault(i => i.UserId == currentUserId && i.JobId == jobId);
 
 
-        public void UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId)
+        public bool UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId)
         {
-            SaveImage(userAndJobViewModel.Applicant);
-            SavePdf(userAndJobViewModel.Applicant);
 
             // Get applicant application from DB and update the details
             var applicationToUpdate = GetApplicantApplication(currentUserId, userAndJobViewModel.Job.Id);
+
+            if (applicationToUpdate.JobApplicationStatus != JobApplicationStatus.pending)
+            {
+                return true;
+            }
+
+            SaveImage(userAndJobViewModel.Applicant);
+            SavePdf(userAndJobViewModel.Applicant);
+
 
             applicationToUpdate.FirstName = userAndJobViewModel.Applicant.FirstName;
             applicationToUpdate.LastName = userAndJobViewModel.Applicant.LastName;
@@ -238,6 +258,7 @@ namespace BigJobbs.Services
 
 
             NotifyAdmin(emailBody);
+            return false;
         }
     }
 }

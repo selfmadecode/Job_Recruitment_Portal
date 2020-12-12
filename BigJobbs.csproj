@@ -328,6 +328,7 @@
     <Content Include="Content\assets\img\adapt_icon\1.svg" />
     <Content Include="Content\assets\img\adapt_icon\2.png" />
     <Content Include="Content\assets\img\adapt_icon\3.png" />
+    <Content Include="Content\assets\img\apply.jpg" />
     <Content Include="Content\assets\img\banner\dog.png" />
     <Content Include="Content\assets\img\banner\img.png" />
     <Content Include="Content\assets\img\blog\author.png" />
@@ -391,6 +392,7 @@
     <Content Include="Content\assets\img\offers\1.png" />
     <Content Include="Content\assets\img\offers\2.png" />
     <Content Include="Content\assets\img\offers\3.png" />
+    <Content Include="Content\assets\img\office.jpg" />
     <Content Include="Content\assets\img\our_blog\blog-img1.jpg" />
     <Content Include="Content\assets\img\post\next.png" />
     <Content Include="Content\assets\img\post\post_1.png" />
@@ -973,6 +975,7 @@
     <Content Include="Views\Dashboard\AllApplicants.cshtml" />
     <Content Include="Views\Dashboard\PendingApplications.cshtml" />
     <Content Include="Views\Dashboard\ApplicationDetails.cshtml" />
+    <Content Include="Views\Dashboard\ProcessedApplications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -34,8 +34,8 @@
                 </a>
                 <ul class="sub-menu-list">
                     <li><a href="@Url.Action("GetPendingApplications", "Dashboard")">Pending</a> </li>
-                    <li><a href="cards.html">Accepted</a> </li>
-                    <li><a href="people.html">Rejected</a></li>
+                    <li><a href="@Url.Action("GetAcceptedApplications", "Dashboard")">Accepted</a> </li>
+                    <li><a href="@Url.Action("GetRejectedApplications", "Dashboard")">Rejected</a></li>
                 </ul>
             </li>
             <li><a href="@Url.Action("GetAllApplicants", "Dashboard")"><i class="fa fa-table"></i> <span>Applicants</span></a></li>

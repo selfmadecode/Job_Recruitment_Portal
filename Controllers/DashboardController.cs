@@ -123,8 +123,27 @@ namespace BigJobbs.Controllers
         public ActionResult GetPendingApplications()
         {
             var pendingApplications = adminDS.GetApplications(JobApplicationStatus.pending);
-
+            
+            ViewBag.ApplicationStatus = "Pending";
             return View("PendingApplications", pendingApplications);
+        }
+
+
+        public ActionResult GetRejectedApplications()
+        {
+            var rejectedApplications = adminDS.GetApplications(JobApplicationStatus.rejected);
+
+            ViewBag.ApplicationStatus = "Rejected";
+            return View("ProcessedApplications", rejectedApplications);
+        }
+
+
+        public ActionResult GetAcceptedApplications()
+        {
+            var acceptedApplications = adminDS.GetApplications(JobApplicationStatus.accepted);
+
+            ViewBag.ApplicationStatus = "Accepted";
+            return View("ProcessedApplications", acceptedApplications);
         }
 
 
@@ -141,7 +160,10 @@ namespace BigJobbs.Controllers
 
         public ActionResult AcceptApplication(int applicantId, int jobId)
         {
-            adminDS.ProcessApplication(applicantId, jobId, JobApplicationStatus.accepted);
+            var alreadyProcessed = adminDS.ProcessApplication(applicantId, jobId, JobApplicationStatus.accepted);
+
+            if (alreadyProcessed == true)
+                return HttpNotFound("Application Already processed!");
 
             return RedirectToAction("GetPendingApplications");
         }
@@ -149,7 +171,10 @@ namespace BigJobbs.Controllers
 
         public ActionResult RejectApplication(int applicantId, int jobId)
         {
-            adminDS.ProcessApplication(applicantId, jobId, JobApplicationStatus.rejected);
+            var alreadyProcessed = adminDS.ProcessApplication(applicantId, jobId, JobApplicationStatus.rejected);
+
+            if (alreadyProcessed == true)
+                return HttpNotFound("Application Already processed!");
 
             return RedirectToAction("GetPendingApplications");
         }

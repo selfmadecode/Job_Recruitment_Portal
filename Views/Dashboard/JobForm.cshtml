@@ -13,80 +13,92 @@
     <link rel="stylesheet" href="~/Content/assets/css/fontawesome-all.min.css">
     <link rel="stylesheet"href="~/Content/Site.css" />
     <link href="~/Content/lib/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet" />
+    <style>
+        .inputbgcolor {
+            background-color: rgba(141, 141, 141, 0.281);
+            height: 50px;
+            color: black;
+        }
+        label{
+            font-size: 14px;
+            font-weight: bolder;
+        }
+    </style>
 </head>
 <body>
     @Html.Partial("_SideBar")
     @Html.Partial("_DashboardHeader")
     <div>
         <div class="main-content">
-            <div class="container-fluid content-top-gap">
+            <div class="container-fluid content-top-gap" style="margin-top: -5px; background-color: white">
 
-                <h1>Add Job</h1>
+                <h3>Add Job</h3>
                 <!-- statistics data -->
 
                 @using (Html.BeginForm("SaveJob", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data", runat = "server" }))
                 {
-                    @Html.ValidationSummary(false, "Please fix the following issues");
+                    @Html.ValidationSummary(true);
                     <p style="color: red">@ViewBag.ImageError</p>
                     //excludepropertyErrors set to true in order to removes the list of errors and pass a default msg
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.Name)
-                        @Html.TextBoxFor(i => i.job.Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(i => i.job
-                   .Name)
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.Salary)
-                        @Html.TextBoxFor(i => i.job.Salary, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(i => i.job.Salary)
+                    <div class="form-row">
+                        <div class="form-group col-xs-12 col-lg-6">
+                            @Html.LabelFor(i => i.job.Name, new {@class = "text-primary"})
+                            @Html.TextBoxFor(i => i.job.Name, new { @class = "form-control col-10 inputbgcolor" })
+                            @Html.ValidationMessageFor(i => i.job.Name)
+                        </div>
+                        <div class="form-group col-xs-12 col-lg-6">
+                            @Html.LabelFor(i => i.job.Salary, new { @class = "text-primary" })
+                            @Html.TextBoxFor(i => i.job.Salary, new { @class = "form-control col-10 inputbgcolor" })
+                            @Html.ValidationMessageFor(i => i.job.Salary)
 
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.DatePosted)
-                        @Html.TextBoxFor(i => i.job.DatePosted, "{0:d MMM yyyy}", new { @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.HiringCompany)
-                        @Html.TextBoxFor(i => i.job.HiringCompany, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(i => i.job.HiringCompany)
+                        </div>
+                        <div class="form-group col-xs-12 col-lg-6">
+                            @Html.LabelFor(i => i.job.DatePosted, new { @class = "text-primary" })
+                            @Html.TextBoxFor(i => i.job.DatePosted, "{0:d MMM yyyy}", new { @class = "form-control col-10 inputbgcolor" })
+                        </div>
+                        <div class="form-group col-xs-12 col-lg-6">
+                            @Html.LabelFor(i => i.job.HiringCompany, new { @class = "text-primary" })
+                            @Html.TextBoxFor(i => i.job.HiringCompany, new { @class = "form-control col-10 inputbgcolor" })
+                            @Html.ValidationMessageFor(i => i.job.HiringCompany)
 
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.Location)
-                        @Html.TextBoxFor(i => i.job.Location, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(i => i.job.Location)
+                        </div>
+                        <div class="form-group col-xs-12 col-lg-6">
+                            @Html.LabelFor(i => i.job.Location, new { @class = "text-primary" })
+                            @Html.TextBoxFor(i => i.job.Location, new { @class = "form-control col-10 inputbgcolor" })
+                            @Html.ValidationMessageFor(i => i.job.Location)
 
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.JobCategoryId)
-                        @Html.DropDownListFor(i => i.job.JobCategoryId, new SelectList(Model.jobCategory, "Id", "Name"), "Select Job Category", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(i => i.job.JobCategoryId)
+                        </div>
+                        <div class="form-group col-xs-12 col-lg-6">
+                            @Html.LabelFor(i => i.job.JobCategoryId, new { @class = "text-primary" })
+                            @Html.DropDownListFor(i => i.job.JobCategoryId, new SelectList(Model.jobCategory, "Id", "Name"), "Select Job Category", new { @class = "form-control col-10 inputbgcolor" })
+                            @Html.ValidationMessageFor(i => i.job.JobCategoryId)
 
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.JobTypeId)
-                        @Html.DropDownListFor(i => i.job.JobTypeId, new SelectList(Model.jobType, "Id", "Name"), "Select Category", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(i => i.job.JobTypeId)
+                        </div>
+                        <div class="form-group col-xs-12 col-lg-6">
+                            @Html.LabelFor(i => i.job.JobTypeId, new { @class = "text-primary" })
+                            @Html.DropDownListFor(i => i.job.JobTypeId, new SelectList(Model.jobType, "Id", "Name"), "Select Category", new { @class = "form-control col-10 inputbgcolor" })
+                            @Html.ValidationMessageFor(i => i.job.JobTypeId)
 
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.Description)
-                        @*<textarea id="edihtor" name="Description"></textarea>*@
-                        @Html.TextAreaFor(i => i.job.Description, new { id = "editor", @class = "form-control" })
-                        @Html.ValidationMessageFor(i => i.job.Description)
+                        </div>
+                        <div class="form-group col-xs-12 col-lg-6">
+                            @Html.LabelFor(i => i.job.ImagePath, new { @class = "text-primary" })
+                            <input type="file" class="form-control-file col-10" name=@Html.NameFor(i =>i.job.ImageFile) required runat="server" accept=".png, .jpg, .jpeg" />
+                            @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
+                            @Html.ValidationMessageFor(i => i.job.ImagePath)
+                            <p style="color: red">@ViewBag.ImageError</p>
+                        </div>
+                        <div class="form-group col-xs-11 col-lg-11">
+                            @Html.LabelFor(i => i.job.Description, new { @class = "text-primary" })
+                            @*<textarea id="edihtor" name="Description"></textarea>*@
+                            @Html.TextAreaFor(i => i.job.Description, new { id = "editor", @class = "form-control col-10" })
+                            @Html.ValidationMessageFor(i => i.job.Description)
 
+                        </div>
+                        @Html.HiddenFor(i => i.job.Id)
+                        <button type="submit" class="btn btn-success form-control col-11">Save</button>
+                        
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(i => i.job.ImagePath)
-                        <input type="file" name=@Html.NameFor(i =>i.job.ImageFile) required runat="server" accept=".png, .jpg, .jpeg" />
-                        @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
-                        @Html.ValidationMessageFor(i => i.job.ImagePath)
-                        <p style="color: red">@ViewBag.ImageError</p>
-                    </div>
-                    @Html.HiddenFor(i => i.job.Id)
-
-                    <button type="submit" class="btn btn-success">Save</button>
-                }
+                 }
 
 
             </div>

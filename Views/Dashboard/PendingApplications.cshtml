@@ -21,52 +21,55 @@
         <div class="main-content">
             <div class="container-fluid content-top-gap">
 
-                <h1>Pending Applications</h1>
-                <!-- statistics data -->
-                <div class="panel-body">
-                    @if (!Model.Any())
-                    {
-                        <p>No Pending Applications</p>
-                    }
-                    else
-                    {
-                        <table id="items" class="table table-hover">
-                            <tr class="info">
-                                <th>Applicant Email</th>
-                                <th>Job</th>
-                                <th>Hiring Company</th>
-                                <th>Job Type</th>
-                                <th>Application status</th>
-                                <th>App. Details</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            @foreach (var applicant in Model)
-                            {
-                                <tr class="info">
-                                    <td>@applicant.EmailAddress</td>
-                                    <td>@applicant.Job.Name</td>
-                                    <td>@applicant.Job.HiringCompany</td>
-                                    <td>@applicant.Job.JobType.Name</td>
-                                    <td>@applicant.JobApplicationStatus </td>
-                                    <td>
-                                        @Html.ActionLink("Details", "ApplicationDetails", "Dashboard", new { applicantId = applicant.Id, jobId = applicant.Job.Id },
-                                         new { @class = "btn btn-info" })
+                <div class="card" style="margin-top: -50px";>
+                    <h3 class="card-title">@ViewBag.ApplicationStatus Applications</h3>
 
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Accept", "AcceptApplication", "Dashboard", new { applicantId = applicant.Id, jobId = applicant.Job.Id },
-                                         new { @class = "btn btn-success" })
-
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Reject", "RejectApplication", "Dashboard", new { applicantId = applicant.Id, jobId = applicant.Job.Id },
-                                             new { @class = "btn btn-danger" })
-                                    </td>
+                    <div class="card-body">
+                        @if (!Model.Any())
+                        {
+                            <p>No Pending Applications</p>
+                        }
+                        else
+                        {
+                            <table id="items" class="table table-hover table-striped table-responsive text-center">
+                                <tr class="bg-info">
+                                    <th>Applicant Email</th>
+                                    <th>Job</th>
+                                    <th>Hiring Company</th>
+                                    <th>Job Type</th>
+                                    <th>Application status</th>
+                                    <th>App. Details</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
-                            }
-                        </table>
-                    }
+                                @foreach (var applicant in Model)
+                                {
+                                    <tr class="info">
+                                        <td>@applicant.EmailAddress</td>
+                                        <td>@applicant.Job.Name</td>
+                                        <td>@applicant.Job.HiringCompany</td>
+                                        <td>@applicant.Job.JobType.Name</td>
+                                        <td>@applicant.JobApplicationStatus </td>
+                                        <td>
+                                            @Html.ActionLink("Details", "ApplicationDetails", "Dashboard", new { applicantId = applicant.Id, jobId = applicant.Job.Id },
+                                             new { @class = "btn btn-info" })
+
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Accept", "AcceptApplication", "Dashboard", new { applicantId = applicant.Id, jobId = applicant.Job.Id },
+                                             new { @class = "btn btn-success" })
+
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Reject", "RejectApplication", "Dashboard", new { applicantId = applicant.Id, jobId = applicant.Job.Id },
+                                                 new { @class = "btn btn-danger" })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        }
+                    </div>
+
                 </div>
 
 

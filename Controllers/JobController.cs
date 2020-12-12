@@ -78,7 +78,7 @@ namespace BigJobbs.Controllers
             var jobDetails = JobService.EditApplication(jobId, currentUserId);
 
             if (jobDetails == null)
-                return HttpNotFound("No Available job matching this Id");
+                return HttpNotFound("Sorry, you have not applied for this Job!");
 
             return View("ApplyForJob", jobDetails);
         }
@@ -132,9 +132,23 @@ namespace BigJobbs.Controllers
             try
             {
                 if(userAndJobViewModel.Applicant.Id == 0)
-                    JobService.SaveApplicantion(userAndJobViewModel);
+                {
+                    var applicationAlreadyProcessed = JobService.SaveApplication(userAndJobViewModel);
+
+                    if (applicationAlreadyProcessed == true)
+                    {
+                        return HttpNotFound("Application Already processed!");
+                    }
+                }
                 else
-                    JobService.UpdateApplication(userAndJobViewModel, currentUserId);
+                {
+                    var applicationAlreadyProcessed = JobService.UpdateApplication(userAndJobViewModel, currentUserId);
+                    
+                    if(applicationAlreadyProcessed == true)
+                    {
+                        return HttpNotFound("Application Already processed!");
+                    }
+                }
             }
             catch (Exception ex)
             {

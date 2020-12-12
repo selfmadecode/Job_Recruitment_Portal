@@ -1,67 +1,114 @@
 ﻿@model BigJobbs.Infrastructure.ViewModels.UserAndJobViewModel
 
-@using (Html.BeginForm("SaveApplication", "Job", FormMethod.Post, new { enctype = "Multipart/Form-Data" }))
-{
-    @Html.ValidationSummary(false, "Please fix the following issues");
-    //excludepropertyErrors set to true in order to removes the list of errors and pass a default msg
-    <p style="color: red">@ViewBag.PassportError</p>
-    <p style="color: red">@ViewBag.PdfError</p>
-    <div class="form-group">
-        @Html.LabelFor(i => i.Job.Name)
-        <h1>@Model.Job.Name</h1>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(i => i.Applicant.FirstName)
-        @Html.TextBoxFor(i => i.Applicant.FirstName, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(i => i.Applicant.LastName)
-        @Html.TextBoxFor(i => i.Applicant.LastName, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(i => i.Applicant.EmailAddress)
-        @Html.TextBoxFor(i => i.Applicant.EmailAddress, new { @class = "form-control" })
+<style>
+    .textbox {
+        background-color: rgba(141, 141, 141, 0.281);
+        height: 50px;
+        font-size: 20px;
+        color: white;
+        font-weight: bolder;
+    }
+    label {
+        font-size: 14px;
+        font-weight: bolder;
+        color: deeppink;
+    }
+    .formContainer {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        background-color: rgba(10, 3, 73, 0.842);
+        background-image: url(../../Content/assets/img/apply.jpg);
+        background-blend-mode: overlay;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    input{
+        color: deeppink;
+    }
+    .formbg {
+        border: 1px solid rgba(10, 3, 73, 0.712);
+        padding: 10px;
+        margin: 10px;
+        background-color: rgba(10, 3, 73, 0.952);
+        border-radius: 10px;
+    }
+</style>
+    <div class="container formContainer" style="display: flex; width: 100%; justify-content: center">
+        <div class="col-9 formbg">
+            @using (Html.BeginForm("SaveApplication", "Job", FormMethod.Post, new { enctype = "Multipart/Form-Data" }))
+            {
+                @Html.ValidationSummary(true);
+                //excludepropertyErrors set to true in order to removes the list of errors and pass a default msg
+                <p style="color: red">@ViewBag.PassportError</p>
+                <p style="color: red">@ViewBag.PdfError</p>
+
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        @Html.LabelFor(i => i.Job.Name)
+                        <h1 style="color: white">@Model.Job.Name Role</h1>
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-6">
+                        @Html.LabelFor(i => i.Applicant.FirstName)
+                        @Html.TextBoxFor(i => i.Applicant.FirstName, new { @class = "form-control col-11 textbox" })
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-6">
+                        @Html.LabelFor(i => i.Applicant.LastName)
+                        @Html.TextBoxFor(i => i.Applicant.LastName, new { @class = "form-control col-11 textbox" })
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-6">
+                        @Html.LabelFor(i => i.Applicant.EmailAddress)
+                        @Html.TextBoxFor(i => i.Applicant.EmailAddress, new { @class = "form-control col-11 textbox" })
+                    </div>
+
+                    <div class="form-group col-xs-12 col-lg-6">
+                        @Html.LabelFor(i => i.Applicant.PhoneNumber)
+                        @Html.TextBoxFor(i => i.Applicant.PhoneNumber, new { @class = "form-control col-11 textbox" })
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-6">
+                        @Html.LabelFor(i => i.Applicant.PassportPath)
+                        <input style="font-size: 15px" type="file" class="col-11" name=@Html.NameFor(i =>i.Applicant.PassportFile) required runat="server" accept=".png, .jpg, .jpeg" />
+                        @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
+                        @Html.ValidationMessageFor(i => i.Applicant.PassportPath)
+                        <p style="color: red">@ViewBag.PassportError</p>
+                    </div>
+                    <div class="form-group col-xs-12 col-lg-6">
+                        @Html.LabelFor(i => i.Applicant.PdfPath)
+                        <input style="font-size: 15px" class="col-11" type="file" name=@Html.NameFor(i =>i.Applicant.PdfFile) required runat="server" accept=".pdf" />
+                        @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
+                        @Html.ValidationMessageFor(i => i.Applicant.PdfPath)
+                        <p style="color: red">@ViewBag.PdfError</p>
+                    </div>
+                </div>
+
+                @Html.HiddenFor(i => i.Job.Id)
+                @Html.HiddenFor(i => i.Applicant.Id)
+                @Html.HiddenFor(i => i.Job.Salary)
+                @Html.HiddenFor(i => i.Job.Description)
+                @Html.HiddenFor(i => i.Job.DatePosted)
+                @Html.HiddenFor(i => i.Job.HiringCompany)
+                @Html.HiddenFor(i => i.Job.Name)
+                @Html.HiddenFor(i => i.Job.Location)
+                @Html.HiddenFor(i => i.Job.JobCategoryId)
+                @Html.HiddenFor(i => i.Job.JobTypeId)
+                @Html.HiddenFor(i => i.Applicant.UserId)
+
+                if (Model.Applicant.Id > 0)
+                {
+                    <button style="background-color: green" type="submit" class="btn btn-success">Update Application</button>
+                }
+                else
+                {
+                    <button style="background-color: green" type="submit" class="btn btn-success">Submit Application</button>
+                }
+            }
+
+        </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(i => i.Applicant.PhoneNumber)
-        @Html.TextBoxFor(i => i.Applicant.PhoneNumber, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(i => i.Applicant.PassportPath)
-        <input type="file" name=@Html.NameFor(i =>i.Applicant.PassportFile) required runat="server" accept=".png, .jpg, .jpeg" />
-        @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
-        @Html.ValidationMessageFor(i => i.Applicant.PassportPath)
-        <p style="color: red">@ViewBag.PassportError</p>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(i => i.Applicant.PdfPath)
-        <input type="file" name=@Html.NameFor(i =>i.Applicant.PdfFile) required runat="server" accept=".pdf" />
-        @*<input type="file" id="ImageFile" name="ImageFile" required runat="server"/>*@
-        @Html.ValidationMessageFor(i => i.Applicant.PdfPath)
-        <p style="color: red">@ViewBag.PdfError</p>
-    </div>
-    @Html.HiddenFor(i => i.Job.Id)
-    @Html.HiddenFor(i => i.Applicant.Id)
-    @Html.HiddenFor(i => i.Job.Salary)
-    @Html.HiddenFor(i => i.Job.Description)
-    @Html.HiddenFor(i => i.Job.DatePosted)
-    @Html.HiddenFor(i => i.Job.HiringCompany)
-    @Html.HiddenFor(i => i.Job.Name)
-    @Html.HiddenFor(i => i.Job.Location)
-    @Html.HiddenFor(i => i.Job.JobCategoryId)
-    @Html.HiddenFor(i => i.Job.JobTypeId)
-    @Html.HiddenFor(i => i.Applicant.UserId)
 
-    if (Model.Applicant.Id > 0)
-    {
-        <button style="background-color: green" type="submit" class="btn btn-success">Update Application</button>
-    }
-    else
-    {
-        <button style="background-color: green" type="submit" class="btn btn-success">Submit Application</button>
-    }
-}
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval");
