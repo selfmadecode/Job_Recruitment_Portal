@@ -976,6 +976,7 @@
     <Content Include="Views\Dashboard\PendingApplications.cshtml" />
     <Content Include="Views\Dashboard\ApplicationDetails.cshtml" />
     <Content Include="Views\Dashboard\ProcessedApplications.cshtml" />
+    <Content Include="Views\Home\Jobs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

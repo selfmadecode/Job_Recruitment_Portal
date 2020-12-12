@@ -29,6 +29,10 @@ namespace BigJobbs.Services
 
         public IEnumerable<JobType> GetAllJobTypes() => Ctx._dbContext.JobTypes.ToList();
 
+        public IEnumerable<Job> GetJobsByCategory(int id)
+        {
+            return Ctx._dbContext.Jobs.Where(j => j.JobCategoryId == id).Include(j => j.JobType).ToList();
+        }
         public Job GetJobDetails(int id)
         {
             var jobInDb = Ctx._dbContext.Jobs.Include(c => c.JobCategory).Include(t => t.JobType).FirstOrDefault(j => j.Id == id);

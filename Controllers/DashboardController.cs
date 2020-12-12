@@ -163,7 +163,7 @@ namespace BigJobbs.Controllers
             var alreadyProcessed = adminDS.ProcessApplication(applicantId, jobId, JobApplicationStatus.accepted);
 
             if (alreadyProcessed == true)
-                return HttpNotFound("Application Already processed!");
+                return HttpNotFound("Application Already processed! or does not exist");
 
             return RedirectToAction("GetPendingApplications");
         }

@@ -122,6 +122,10 @@ namespace BigJobbs.Services
 
             var application = GetJobAndApplicantDetails(applicantId, jobId);
 
+            // if the application is not found
+            if (application == null)
+                return true;
+
             //If the application has already been worked on
             //If the application status is not pending (i.e it has been processed before)
             if (application.JobApplicationStatus != pending)

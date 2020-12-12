@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BigJobbs.Models.Job>
+    <div class="col-xl-10">
+        <!-- single-job-content -->
+        @{
+            if (!Model.Any())
+            {
+                <p>No Job Available</p>
+            }
+            else
+            {
+                foreach (var job in Model)
+                {
+                    <div class="single-job-items mb-30">
+                        <div class="job-items">
+                            <div class="company-img">
+                                <img style="width: 150px;" src="@Url.Content(job.ImagePath)" alt="">
+                            </div>
+                            <div class="job-tittle">
+                                <h1> @Html.ActionLink(job.Name, "JobDetails", "Job", new { id = job.Id }, null)</h1>
+                                @*<a href="job_details.html"><h4>@job.Name</h4></a>*@
+                                <ul>
+                                    <li>@job.HiringCompany</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>@job.Location</li>
+                                    <li>$@job.Salary</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="items-link f-right">
+                            <a>@job.JobType.Name</a>
+                            <p>@string.Format("{0:d MMM, yyyy}", @job.DatePosted)</p>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>

@@ -11,6 +11,7 @@ namespace BigJobbs.Interfaces
     public interface IJobServices
     {
         IEnumerable<Job> GetAllJobs();
+        IEnumerable<Job> GetJobsByCategory(int id);
         IEnumerable<JobCategory> GetAllJobCategorries();
         IEnumerable<JobType> GetAllJobTypes();
 
