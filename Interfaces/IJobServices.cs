@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BigJobbs.Interfaces
 {
@@ -26,6 +27,6 @@ namespace BigJobbs.Interfaces
 
         bool SaveApplication(UserAndJobViewModel userAndJobViewModel);
         bool UpdateApplication(UserAndJobViewModel userAndJobViewModel, string currentUserId);
-
+        string SaveFile(HttpPostedFileBase file, string folderToSaveFile);
     }
 }

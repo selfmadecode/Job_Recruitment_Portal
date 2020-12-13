@@ -105,32 +105,33 @@ namespace BigJobbs.Services
         public ApplicationUser GetUser(string currentUserId) => Ctx._dbContext.Users.SingleOrDefault(i => i.Id == currentUserId);
 
 
-        public void SaveImage(Applicant appplicantDetails)
+        public string SaveFile(HttpPostedFileBase file, string folderToSaveFile)
         {
             // map the file path in DB to the image location(JobImages)
-            string fileName = Path.GetFileNameWithoutExtension(appplicantDetails.PassportFile.FileName);
-            string extension = Path.GetExtension(appplicantDetails.PassportFile.FileName);
+            string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+            string extension = Path.GetExtension(file.FileName);
 
             fileName += DateTime.Now.ToString("yymmssfff") + extension;
-            appplicantDetails.PassportPath = "~/Content/JobImages/" + fileName;
-            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/JobImages/"), fileName);
+           var filePath = folderToSaveFile + fileName;
+            fileName = Path.Combine(HttpContext.Current.Server.MapPath(folderToSaveFile), fileName);
 
-            appplicantDetails.PassportFile.SaveAs(fileName);
+            file.SaveAs(fileName);
+            return filePath;
         }
 
 
-        public void SavePdf(Applicant appplicantDetails)
-        {
-            // map the file path in DB to the image location(Pdf)
-            string fileName = Path.GetFileNameWithoutExtension(appplicantDetails.PdfFile.FileName);
-            string extension = Path.GetExtension(appplicantDetails.PdfFile.FileName);
+        //public void SavePdf(Applicant appplicantDetails)
+        //{
+        //    // map the file path in DB to the image location(Pdf)
+        //    string fileName = Path.GetFileNameWithoutExtension(appplicantDetails.PdfFile.FileName);
+        //    string extension = Path.GetExtension(appplicantDetails.PdfFile.FileName);
 
-            fileName += DateTime.Now.ToString("yymmssfff") + extension;
-            appplicantDetails.PdfPath = "~/Content/Pdf/" + fileName;
-            fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Pdf/"), fileName);
+        //    fileName += DateTime.Now.ToString("yymmssfff") + extension;
+        //    appplicantDetails.PdfPath = "~/Content/Pdf/" + fileName;
+        //    fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Pdf/"), fileName);
 
-            appplicantDetails.PdfFile.SaveAs(fileName);
-        }
+        //    appplicantDetails.PdfFile.SaveAs(fileName);
+        //}
 
 
         public bool SaveApplication(UserAndJobViewModel userAndJobViewModel)
@@ -140,9 +141,11 @@ namespace BigJobbs.Services
             {
                 return true;
             }
+            string folderToSaveImage = "~/Content/JobImages/";
+            string folderToSavePdf = "~/Content/Pdf/";
 
-            SaveImage(userAndJobViewModel.Applicant);
-            SavePdf(userAndJobViewModel.Applicant);
+            userAndJobViewModel.Applicant.PassportPath = SaveFile(userAndJobViewModel.Applicant.PassportFile, folderToSaveImage);
+            userAndJobViewModel.Applicant.PdfPath = SaveFile(userAndJobViewModel.Applicant.PdfFile, folderToSavePdf);
 
             // Save User Application
             var applicant = new Applicant
@@ -238,8 +241,14 @@ namespace BigJobbs.Services
                 return true;
             }
 
-            SaveImage(userAndJobViewModel.Applicant);
-            SavePdf(userAndJobViewModel.Applicant);
+            string folderToSaveImage = "~/Content/JobImages/";
+            string folderToSavePdf = "~/Content/Pdf/";
+
+            // send the file and folder path to the method SaveFile, the function returns the file path to userAndJobViewModel.Applicant.PassportPath  
+            
+            userAndJobViewModel.Applicant.PassportPath = SaveFile(userAndJobViewModel.Applicant.PassportFile, folderToSaveImage);
+            userAndJobViewModel.Applicant.PdfPath = SaveFile(userAndJobViewModel.Applicant.PdfFile, folderToSavePdf);
+
 
 
             applicationToUpdate.FirstName = userAndJobViewModel.Applicant.FirstName;
